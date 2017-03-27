@@ -28,8 +28,10 @@ typedef	struct		s_fil
 }					t_fil;
 
 char	**read_player(t_fil *fil);
+void	check_plateau(char *str, t_fil *fil);
 char	**read_map(void);
 void	freetab(char **tab);
 void	recup_cord(char **tab, t_fil *fil);
+void	cutmap(char ***tab, t_fil *fil);
 
 #endif

@@ -26,7 +26,7 @@ static int	check_player(char *str, char *name)
 	return (0);
 }
 
-static void	check_plateau(char *str, t_fil *fil)
+void		check_plateau(char *str, t_fil *fil)
 {
 	char	*ptr;
 	int		i;
@@ -55,7 +55,7 @@ static void	check_plateau(char *str, t_fil *fil)
 
 char		**read_player(t_fil *fil)
 {
-	char	*tab;
+	char	**tab;
 	
 	tab = read_map();
 	if ((check_player(tab[0], "p1")) == 1)
@@ -66,6 +66,7 @@ char		**read_player(t_fil *fil)
 	}
 	else
 		fil->c = 'X';
+	return (tab);
 }
 
 char		**read_map(void)

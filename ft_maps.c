@@ -95,3 +95,24 @@ void		recup_cord(char **tab, t_fil *fil)
 		i++;
 	}
 }
+
+void		cutmap(char ***tab, t_fil *fil)
+{
+	char	**ret;
+	int		i;
+
+	if (!(ret = malloc(sizeof(char **) * (fil->line + 1))))
+	{
+		ft_printf("failed malloc when adjusting the map\n");
+		exit(EXIT_FAILURE);
+	}
+	i = 2;
+	while ((*tab)[i] != 0)
+	{
+		ret[i - 2] = ft_strsub((*tab)[i], 4, ft_strlen((*tab)[i]) - 4);
+		i++;
+	}
+	ret[i - 2]  = 0;
+	freetab(*tab);
+	*tab = ret;
+}
