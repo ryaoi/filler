@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 13:44:47 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/26 21:57:57 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/03/27 22:00:49 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int						my_realloc(const int fd, t_line **list)
 
 	ret = 1;
 	stock = ft_strnew(1);
-	while ((ret = read(fd, buffer, BUFF_SIZE)) && *buffer != 10)
+	while ((ret = read(fd, buffer, BUFF_SIZE)))
 	{
 		if (ret == -1)
 			return (ret);
@@ -103,8 +103,6 @@ int						my_realloc(const int fd, t_line **list)
 		ft_strdel(&(stock));
 		stock = ft_strjoini(prev, buffer, 1);
 	}
-	if (*stock == 10)
-		return (10);
 	new_line(list, fd, stock);
 	ft_strdel(&(stock));
 	return (ret);
@@ -127,11 +125,6 @@ int						get_next_line(const int fd, char **line)
 		if (ptr->fd == fd)
 			return (get_line(line, &ptr, &list));
 		ptr = ptr->next;
-	}
-	if (ptr == NULL)
-	{
-		if ((ret = my_realloc(fd, &list)) == 10)
-			return (0);
 	}
 	ptr = list;
 	while (ptr->next != NULL)

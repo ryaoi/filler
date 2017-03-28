@@ -6,7 +6,7 @@
 #    By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/23 23:09:46 by ryaoi             #+#    #+#              #
-#    Updated: 2017/03/26 21:08:35 by ryaoi            ###   ########.fr        #
+#    Updated: 2017/03/28 00:24:04 by ryaoi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ LIBFT	= $(DIR_LIB)/libft.a
 SRC		= main.c \
 		  read_player.c \
 		  ft_maps.c \
-		  freetab.c
+		  freetab.c \
+		  first_move.c \
+		  ft_check.c
 
 OBJ		= $(SRC:.c=.o)
 

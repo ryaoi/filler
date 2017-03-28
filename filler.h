@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 20:32:29 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/26 22:10:12 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/03/28 01:49:48 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	check_plateau(char *str, t_fil *fil);
 char	**read_map(void);
 void	freetab(char **tab);
 void	recup_cord(char **tab, t_fil *fil);
-void	cutmap(char ***tab, t_fil *fil);
+char	**cutmap(char **tab, t_fil *fil);
+void	first_move(t_fil *fil, char **tab);
+int		can_put(char **tab, char **tetri, t_fil *fil);
 
 #endif

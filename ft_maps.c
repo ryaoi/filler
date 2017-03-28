@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 20:53:27 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/26 21:45:37 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/03/28 01:13:01 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,23 +96,29 @@ void		recup_cord(char **tab, t_fil *fil)
 	}
 }
 
-void		cutmap(char ***tab, t_fil *fil)
+char		**cutmap(char **tab, t_fil *fil)
 {
 	char	**ret;
 	int		i;
+	int		skip;
 
-	if (!(ret = malloc(sizeof(char **) * (fil->line + 1))))
+	skip = 0;
+	i = 0;
+	if (!(ret = (char **)malloc(sizeof(char *) * (fil->line + 1))))
 	{
 		ft_printf("failed malloc when adjusting the map\n");
 		exit(EXIT_FAILURE);
 	}
-	i = 2;
-	while ((*tab)[i] != 0)
+	while (ft_strncmp(tab[i], "00", 2) != 0)
 	{
-		ret[i - 2] = ft_strsub((*tab)[i], 4, ft_strlen((*tab)[i]) - 4);
+		i++;
+		skip++;
+	}
+	while (i < fil->line + skip)
+	{
+		ret[i - skip] = ft_strsub(tab[i], 4, ft_strlen(tab[i]) - 4);
 		i++;
 	}
-	ret[i - 2]  = 0;
-	freetab(*tab);
-	*tab = ret;
+	ret[i - skip]  = 0;
+	return (ret);
 }

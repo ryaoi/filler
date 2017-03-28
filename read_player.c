@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:34:00 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/26 22:10:01 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/03/28 02:19:14 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	check_player(char *str, char *name)
 {
-	char	*ptr;
+	char		*ptr;
 
 	ptr = str;
 	while (*ptr != '\0')
@@ -28,8 +28,8 @@ static int	check_player(char *str, char *name)
 
 void		check_plateau(char *str, t_fil *fil)
 {
-	char	*ptr;
-	int		i;
+	char		*ptr;
+	int			i;
 
 	i = 0;
 	ptr = str;
@@ -55,9 +55,10 @@ void		check_plateau(char *str, t_fil *fil)
 
 char		**read_player(t_fil *fil)
 {
-	char	**tab;
+	char		**tab;
 	
-	tab = read_map();
+	if (!(tab = read_map()))
+		return (NULL);
 	if ((check_player(tab[0], "p1")) == 1)
 	{
 		fil->c = 'O';
@@ -71,15 +72,19 @@ char		**read_player(t_fil *fil)
 
 char		**read_map(void)
 {
-	char	buf[4096];
-	char	*str;
-	char	**tab;
-	int		ret;
+	char		buf[4096];
+	char		*str;
+	char		**tab;
+	int			ret;
 
 	str = ft_strnew(0);
 	ft_bzero(buf, 4096);
+	sleep(2);
+	ft_putstr_fd("waiting for read\n", 2);
 	if ((ret = (read(0, buf, 4096))) > 0)
 	{
+		ft_putstr_fd(ft_itoa(ret), 2);
+		ft_putstr_fd("\t\tEntered\n", 2);
 		buf[ret] = '\0';
 		if (ft_strlen(str) == 0)
 			str = ft_strdup(buf);
@@ -87,6 +92,19 @@ char		**read_map(void)
 			str = ft_strjoini(str, buf, 1);
 		ft_bzero(buf, 4096);
 	}
+	if (ret == -1)
+	{
+		ft_putstr_fd("something went wrong while reading\n", 2);
+		exit(EXIT_FAILURE);
+	}
+	if (ft_strlen(str) == 0)
+	{
+		ft_putstr_fd("str is NULL\n", 2);
+		return (NULL);
+	}
+	ft_putstr_fd("\n@@@reading player\n", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("\n@@@finished reading players\n", 2);
 	tab = ft_strsplit(str, '\n');
 	ft_strdel(&str);
 	return (tab);
