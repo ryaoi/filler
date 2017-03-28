@@ -35,13 +35,13 @@ CFLAGS	= -Wall -Wextra -Werror
 all: $(NAME)
 
 %.o:%.c
-	$(CC) $(CFLAGS) -I./$(INCLUDE) -o $@ -c $<
+	$(CC) -I./$(INCLUDE) -o $@ -c $<
 
 $(LIBFT):
 	make -C $(DIR_LIB)
 
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) ./libft/libft.a $(OBJ) $(INCLUDE) -ltermcap
+	$(CC) -o $(NAME) ./libft/libft.a $(OBJ) $(INCLUDE) -ltermcap
 
 clean:
 	make clean -C $(DIR_LIB)

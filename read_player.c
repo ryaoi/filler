@@ -72,15 +72,16 @@ char		**read_player(t_fil *fil)
 
 char		**read_map(void)
 {
-	char		buf[4096];
+	static char	buf[4096];
 	char		*str;
 	char		**tab;
 	int			ret;
+	char		*line;
 
 	str = ft_strnew(0);
 	ft_bzero(buf, 4096);
-	sleep(2);
 	ft_putstr_fd("waiting for read\n", 2);
+	sleep(2);
 	if ((ret = (read(0, buf, 4096))) > 0)
 	{
 		ft_putstr_fd(ft_itoa(ret), 2);
@@ -92,6 +93,20 @@ char		**read_map(void)
 			str = ft_strjoini(str, buf, 1);
 		ft_bzero(buf, 4096);
 	}
+	line = NULL;
+/*
+	ft_putstr_fd("-------------lineee\n", 2);
+	while ((ret = get_next_line(0, &line)) > 0)
+	{
+		ft_putstr_fd(line, 2);
+		if (ft_strlen(str) == 0)
+			str = ft_strdup(line);
+		else
+			str = ft_strjoini(str, line, 3);
+		line = NULL;
+	}
+	ft_putstr_fd("-----------end line\n", 2);
+*/
 	if (ret == -1)
 	{
 		ft_putstr_fd("something went wrong while reading\n", 2);

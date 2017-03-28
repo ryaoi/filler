@@ -49,14 +49,8 @@ int		main(void)
 			ft_putstr_fd("still reading\n", 2);
 			continue ;
 		}
-		printab(tab);
-		ft_putstr_fd("10 3\n", 1);
-//		if (fil.line == 0)
-//		{
-//			check_plateau(tab[0], &fil);
-//			recup_cord(tab, &fil);
-//		}
-//		cutmap(&tab, &fil);
+		first_move(&fil, tab);
+		freetab(tab);
 //		printab(tab);
 /*
 		if (fil.c == 'O')
@@ -64,7 +58,6 @@ int		main(void)
 		else
 			move_p2(&fil, tab);
 */
-		freetab(tab);
 	}
-		return (0);
+	return (0);
 }

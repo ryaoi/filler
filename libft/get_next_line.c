@@ -12,31 +12,7 @@
 
 #include "get_next_line.h"
 
-void					freeline(t_line **lst, t_line **origin)
-{
-	t_line				*ptr;
-	t_line				*prev;
-
-	ptr = *origin;
-	while (ptr->fd != (*lst)->fd)
-	{
-		prev = ptr;
-		ptr = ptr->next;
-	}
-	if ((*lst)->fd == (*origin)->fd)
-	{
-		free((*origin)->stock);
-		free(*origin);
-		*origin = NULL;
-		return ;
-	}
-	prev->next = ptr->next;
-	free(ptr->stock);
-	ptr->fd = 0;
-	free(ptr);
-}
-
-static int				get_line(char **line, t_line **list, t_line **origin)
+int						get_line(char **line, t_line **list)
 {
 	int					i;
 
@@ -46,7 +22,7 @@ static int				get_line(char **line, t_line **list, t_line **origin)
 	if ((*list)->stock[i] == '\n')
 	{
 		*line = ft_strsub((*list)->stock, 0, i);
-		(*list)->stock = ft_strsubfree((*list)->stock, i + 1,
+		(*list)->stock = ft_strsub((*list)->stock, i + 1,
 		ft_strlen((*list)->stock) - i + 1);
 	}
 	else if ((*list)->stock[i] == '\0')
@@ -54,18 +30,32 @@ static int				get_line(char **line, t_line **list, t_line **origin)
 		if (i != 0)
 			*line = ft_strsub((*list)->stock, 0, i);
 		else
-		{
 			*line = ft_strnew(0);
-			freeline(list, origin);
+		(*list)->stock = ft_strnew(0);
+		if (i == 0)
+		{
+			(*list)->fd = 0;
 			return (0);
 		}
-		free((*list)->stock);
-		(*list)->stock = ft_strnew(0);
 	}
 	return (1);
 }
 
-static void				new_line(t_line **list, int fd, char *stock)
+t_line					*find_fd(t_line **list, int fd)
+{
+	t_line				*ptr;
+
+	ptr = *list;
+	while (ptr != NULL)
+	{
+		if (ptr->fd == fd)
+			return (ptr);
+		ptr = ptr->next;
+	}
+	return (NULL);
+}
+
+t_line					*new_line(t_line **list, int fd, char *stock)
 {
 	t_line				*ptr;
 	t_line				*new;
@@ -83,9 +73,10 @@ static void				new_line(t_line **list, int fd, char *stock)
 		ptr->next = new;
 	}
 	new->next = NULL;
+	return (new);
 }
 
-int						my_realloc(const int fd, t_line **list)
+int						my_realloc(const int fd, t_line **list, t_line **ptr)
 {
 	char				*stock;
 	char				*prev;
@@ -101,9 +92,10 @@ int						my_realloc(const int fd, t_line **list)
 		buffer[ret] = '\0';
 		prev = ft_strdup(stock);
 		ft_strdel(&(stock));
-		stock = ft_strjoini(prev, buffer, 1);
+		stock = ft_strjoin(prev, buffer);
+		ft_strdel(&prev);
 	}
-	new_line(list, fd, stock);
+	*ptr = new_line(list, fd, stock);
 	ft_strdel(&(stock));
 	return (ret);
 }
@@ -120,14 +112,10 @@ int						get_next_line(const int fd, char **line)
 		return (-1);
 	if (!(*line))
 		*line = NULL;
-	while (ptr != NULL)
-	{
-		if (ptr->fd == fd)
-			return (get_line(line, &ptr, &list));
-		ptr = ptr->next;
-	}
-	ptr = list;
-	while (ptr->next != NULL)
-		ptr = ptr->next;
-	return (get_line(line, &ptr, &list));
+	*line = ft_strnew(0);
+	if (!(ptr = find_fd(&list, fd)))
+		ret = my_realloc(fd, &list, &ptr);
+	if (ret == -1)
+		return (ret);
+	return (get_line(line, &ptr));
 }
