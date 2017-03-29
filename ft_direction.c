@@ -72,6 +72,46 @@ int			bottomright(char **tab, char **tetri, t_fil *fil)
 	return (0);
 }
 
+int			middlebottomleft(char **tab, char **tetri, t_fil *fil)
+{
+	int		i;
+	int		l;
+
+	i = ((fil->line - 1) * 2) / 3;
+	while (i >= 0)
+	{
+		l = 0;
+		while (l < fil->col)
+		{
+			if (valid_put(tab, tetri, i, l, fil) == 1)
+				return (1);
+			l++;
+		}
+		i--;
+	}
+	return (0);
+}
+
+int			testleft(char **tab, char **tetri, t_fil *fil)
+{
+	int		i;
+	int		l;
+
+	i = 0;
+	while (i < fil->col)
+	{
+		l = 0;
+		while (l < fil->line)
+		{
+			if (valid_put(tab, tetri, i, l, fil) == 1)
+				return (1);
+			l++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 int			bottomleft(char **tab, char **tetri, t_fil *fil)
 {
 	int		i;

@@ -40,6 +40,8 @@ int		bottomright(char **tab, char **tetri, t_fil *fil);
 int		bottomleft(char **tab, char **tetri, t_fil *fil);
 int		topright(char **tab, char **tetri, t_fil *fil);
 int		topleft(char **tab, char **tetri, t_fil *fil);
+int		middlebottomleft(char **tab, char **tetri, t_fil *fil);
+int		testleft(char **tab, char **tetri, t_fil *fil);
 
 
 #endif
