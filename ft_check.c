@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 23:07:35 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/28 02:22:25 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/03/29 01:48:30 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,38 +31,7 @@ static void	clean_map(char **tab)
 	}
 }
 
-static int	check_interact(char **tab, t_fil *fil)
-{
-	int		i;
-	int		l;
-
-	i = 0;
-	while (tab[i] != 0)
-	{
-		l = 0;
-		while (tab[i][l] != '\0')
-		{
-			if (tab[i][l] == '*')
-			{
-				if (fil->c == 'O' && ((i > 0 && (tab[i - 1][l] == 'O'))
-					|| (tab[i + 1] != '\0' && tab[i + 1][l] == 'O')
-					|| (l > 0 && tab[i][l - 1] == 'O')
-					|| tab[i][l + 1] == 'O'))
-					return (1);
-				else if (fil->c == 'X' && ((i > 0 && (tab[i - 1][l] == 'X'))
-					|| ( tab[i + 1] != '\0' && tab[i + 1][l] == 'X')
-					|| (l > 0 && tab[i][l - 1] == 'X')
-					|| tab[i][l + 1] == 'X'))
-					return (1);
-			}
-			l++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-static int	valid_put(char **tab, char **tetri, int i, int l, t_fil *fil)
+static void	insert_tetri(char **tab, char **tetri, int i, int l)
 {
 	int		x;
 	int		y;
@@ -73,17 +42,53 @@ static int	valid_put(char **tab, char **tetri, int i, int l, t_fil *fil)
 		x = 0;
 		while (tetri[y][x] != '\0')
 		{
-			if (tab[i + y][l + x] != '.')
-			{
-				clean_map(tab);
-				return (0);
-			}
-			tab[i + y][l + x] = tetri[y][x];
+			if (tetri[y][x] == '*')
+				tab[i + y][l + x] = 'O';
 			x++;
 		}
 		y++;
 	}
-	if (!(check_interact(tab, fil)))
+}
+
+int			valid_put(char **tab, char **tetri, int i, int l, t_fil *fil)
+{
+	int		x;
+	int		y;
+	int		touched;
+
+	touched = 0;
+	y = 0;
+	while (tetri[y] != 0)
+	{
+		x = 0;
+		while (tetri[y][x] != '\0')
+		{
+			if (i + y >= fil->line || l + x >= fil->col)
+			{
+				clean_map(tab);
+				return (0);
+			}
+			if (tetri[y][x] == '.')
+			{
+				x++;
+				continue ;
+			}
+			if (tab[i + y][l + x] == fil->c ||
+				tab[i + y][l + x] == fil->c + 32)
+				touched++;
+			if (touched == 2 || tab[i + y][l + x] == fil->enemy_c
+				|| tab[i + y][l + x] == fil->enemy_c + 32)
+			{
+				clean_map(tab);
+				return (0);
+			}
+			if (tab[i + y][l + x] == '.')
+				tab[i + y][l + x] = tetri[y][x];
+			x++;
+		}
+		y++;
+	}
+	if (touched != 1)
 	{
 		clean_map(tab);
 		return (0);
@@ -98,33 +103,7 @@ static int	valid_put(char **tab, char **tetri, int i, int l, t_fil *fil)
 		x++;
 	}
 */
-	ft_printf("%d %d\n", i + 1, l);
+//	insert_tetri(tab, tetri, i, l);
+	ft_printf("%d %d\n", i, l);
 	return (1);
-}
-
-int			can_put(char **tab, char **tetri, t_fil *fil)
-{
-	int		i;
-	int		l;
-
-	i = 0;
-	while (tab[i] != 0)
-	{
-		l = 0;
-		while (tab[i][l] != '\0')
-		{
-/*
-			if (tab[i][l] == '.')
-			{
-				if (valid_put(tab, tetri, i, l, fil) == 1)
-					return (1);
-			}
-*/
-			if (tab[i][l] == 'O')
-				return (ft_printf("%d %d\n", i, l));
-			l++;
-		}
-		i++;
-	}
-	return (0);
 }

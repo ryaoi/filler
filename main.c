@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 20:32:12 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/28 02:21:58 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/03/28 22:49:11 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,25 @@ int		main(void)
 	t_fil	fil;
 	char	**tab;
 
-	ft_putstr_fd("LOOOOOL", 2);
 	fil.line = 0;
 	if (!(tab = read_player(&fil)))
-	{
-		ft_putstr_fd("EXIT EXIT EXIT\n", 2);
 		exit (EXIT_FAILURE);
-	}
-	if (fil.c == 'O')
-		first_move(&fil, tab);
+	first_move(&fil, tab);
 	freetab(tab);
+	tab = NULL;
+	ft_putstr_fd("get inside the while\n", 2);
 	while (1)
 	{
 		if (!(tab = read_map()))
 		{
-			ft_putstr_fd("still reading\n", 2);
-			continue ;
+			ft_putstr_fd("get out!!!\n", 2);
+//			exit (0);
 		}
-		first_move(&fil, tab);
-		freetab(tab);
+		else
+		{
+			first_move(&fil, tab);
+			freetab(tab);
+		}
 //		printab(tab);
 /*
 		if (fil.c == 'O')
