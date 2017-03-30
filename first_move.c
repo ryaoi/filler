@@ -83,12 +83,7 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 	}
 	ft_putstr_fd("\n@@@showed map\n", 2);
 */
-// mvoe the O and X till half or 1/3 of y then spread it to the angle
-// create a checker to detect if it touched top then need tot ouch bottom.
-// keep the coord and if tetri_x > tetri_y stick it to the left
-// else top
-
-	if (fil->my_y > fil->enemy_y && fil->my_x > fil->enemy_x)
+	if (fil->c == 'X')
 	{
 
 		if (tet.map[0][0] == '.' && (check_line(tet.map, fil, 0, fil->line / 3) == 0)
@@ -176,7 +171,6 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 	{
 		if (check_surroundx(tet.map, fil) == 1 && check_line(tet.map, fil, 1, fil->line - 1) == 1)
 		{
-//			if (surroundx(tet.map, tet.tetri, fil) == 1)
 			if (virusdown(tet.map, tet.tetri, fil) == 1)
 				return ;
 		}
@@ -190,7 +184,7 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 			if (gotomiddlefromo(tet.map, tet.tetri, fil) == 1)
 			return ;
 		}
-		else if (tet.map[0][fil->col - 1] == '.' && tet.tetri_x >= tet.tetri_y)
+		if (tet.map[0][fil->col - 1] == '.' && tet.tetri_x >= tet.tetri_y) //wit helse
 		{
 			if (topright(tet.map, tet.tetri, fil) == 0)
 			{
@@ -201,16 +195,6 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 				}
 			}
 		}
-	/*
-		else if (tet.map[fil->line - 1][fil->col - 1] == '.')
-		{
-			if (bottomright(tet.map, tet.tetri, fil) == 0)
-			{
-				ft_printf("0 0 \n");
-				exit (0);
-			}
-		}
-	*/
 		else if (tet.map[fil->line - 1][0] == '.')
 		{
 			if (bottomleft(tet.map, tet.tetri, fil) == 0)
@@ -234,7 +218,6 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 			}
 		}
 	}
-
 	freetab(tet.map);
 }
 

@@ -35,29 +35,19 @@ int		main(void)
 	fil.line = 0;
 	if (!(tab = read_player(&fil)))
 		exit (EXIT_FAILURE);
-	first_move(&fil, tab);
-	freetab(tab);
-	tab = NULL;
 	ft_putstr_fd("get inside the while\n", 2);
 	while (1)
 	{
+		ft_putstr_fd("go for the move\n", 2);
+		first_move(&fil, tab);
+		ft_putstr_fd("finished the move?\n", 2);
+		freetab(tab);
 		if (!(tab = read_map()))
 		{
 			ft_putstr_fd("get out!!!\n", 2);
-//			exit (0);
+			exit (0);
 		}
-		else
-		{
-			first_move(&fil, tab);
-			freetab(tab);
-		}
-//		printab(tab);
-/*
-		if (fil.c == 'O')
-			move_p1(&fil, tab);
-		else
-			move_p2(&fil, tab);
-*/
 	}
+	freetab(tab);
 	return (0);
 }

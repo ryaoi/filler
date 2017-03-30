@@ -79,16 +79,16 @@ char		**read_player(t_fil *fil)
 
 char		**read_map(void)
 {
-	char		buf[8192];
+	char		buf[4096];
 	char		*str;
 	char		**tab;
 	int			ret;
 
 	str = ft_strnew(0);
-	ft_bzero(buf, 8192);
+	ft_bzero(buf, 4096);
 	ft_putstr_fd("waiting for read\n", 2);
 	usleep(200 * 500);
-	if ((ret = (read(0, buf, 8192))) > 0)
+	if ((ret = (read(0, buf, 4096))) > 0)
 	{
 		ft_putstr_fd(ft_itoa(ret), 2);
 		buf[ret] = '\0';
@@ -96,7 +96,7 @@ char		**read_map(void)
 			str = ft_strdup(buf);
 		else
 			str = ft_strjoini(str, buf, 1);
-		ft_bzero(buf, 8192);
+		ft_bzero(buf, 4096);
 	}
 	ft_putstr_fd("end of read\n", 2);
 	if (ret == -1)
@@ -109,14 +109,10 @@ char		**read_map(void)
 		ft_putstr_fd("str is NULL\n", 2);
 		return (NULL);
 	}
-//	ft_putstr_fd("@@@@@@@@@@@@@@@@@@@@@@@\n", 2);
-//	ft_putstr_fd(str, 2);
-//	ft_putstr_fd("@@@@@@@@@@@@@@@@@@@@@@@\n", 2);
-	if (ret != 4096)
-	{
-		tab = ft_strsplit(str, '\n');
-		ft_strdel(&str);
-		return (tab);
-	}
-	return (NULL);
+	ft_putstr_fd("@@@@@@@@@@@@@@@@@@@@@@@\n", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("@@@@@@@@@@@@@@@@@@@@@@@\n", 2);
+	tab = ft_strsplit(str, '\n');
+	ft_strdel(&str);
+	return (tab);
 }
