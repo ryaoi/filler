@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 22:54:05 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/28 23:00:41 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/03/29 23:08:16 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int			middlebottomleft(char **tab, char **tetri, t_fil *fil)
 	int		i;
 	int		l;
 
-	i = ((fil->line - 1) * 2) / 3;
+	i = ((fil->line - 1) * 4) / 5; // 2 and 3
 	while (i >= 0)
 	{
 		l = 0;
@@ -110,6 +110,64 @@ int			testleft(char **tab, char **tetri, t_fil *fil)
 		i++;
 	}
 	return (0);
+}
+
+int			fromoriginy(char **tab, char **tetri, t_fil *fil)
+{
+	int		l;
+
+	l = 0;
+	while (l < fil->col)
+	{
+		if (valid_put(tab, tetri, fil->my_y, l, fil) == 1)
+			return (1);
+		l++;
+	}
+	return (0);
+}
+
+int			fromoriginx(char **tab, char **tetri, t_fil *fil)
+{
+	int		l;
+
+	l = 0;
+	while (l < fil->line)
+	{
+		if (valid_put(tab, tetri, l, fil->my_x, fil) == 1)
+			return (1);
+		l++;
+	}
+	return (0);
+}
+
+int			fromoriginxdown(char **tab, char **tetri, t_fil *fil)
+{
+	int		l;
+
+	l = fil->line - 1;
+	while (l >= 0)
+	{
+		if (valid_put(tab, tetri, l, fil->my_x, fil) == 1)
+			return (1);
+		l--;
+	}
+	return (0);
+
+}
+
+int			fromoriginydown(char **tab, char **tetri, t_fil *fil)
+{
+	int		l;
+
+	l = fil->col - 1;
+	while (l >= 0)
+	{
+		if (valid_put(tab, tetri, fil->my_y, l, fil) == 1)
+			return (1);
+		l--;
+	}
+	return (0);
+
 }
 
 int			bottomleft(char **tab, char **tetri, t_fil *fil)

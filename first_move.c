@@ -1,4 +1,3 @@
-/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   first_move.c                                       :+:      :+:    :+:   */
@@ -6,7 +5,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 22:38:30 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/29 02:27:59 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/03/29 22:24:07 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,73 +60,113 @@ static int	check_side(char **tab, t_fil *fil, int l, int side)
 
 static void	puttetri(char **tab, char **tetri, t_fil *fil)
 {
-	char	**map;
 	int		i;
-	int		tetri_y;
-	int		tetri_x;
+	t_tetri	tet;
 
-	tetri_y = 0;
-	while (tetri[tetri_y] != 0)
-		tetri_y++;
-	tetri_x = 0;
-	while (tetri[0][tetri_x] != '\0')
-		tetri_x++;
-	map = cutmap(tab, fil);
+	tet.tetri = tetri;
+	tet.tetri_y = 0;
+	while (tet.tetri[tet.tetri_y] != 0)
+		tet.tetri_y++;
+	tet.tetri_x = 0;
+	while (tet.tetri[0][tet.tetri_x] != '\0')
+		tet.tetri_x++;
+	tet.map = cutmap(tab, fil);
+
 	i = 0;
+/*
 	ft_putstr_fd("\n@@@@clean map\n", 2);
-	while (map[i] != 0)
+	while (tet.map[i] != 0)
 	{
-		ft_putstr_fd(map[i], 2);
+		ft_putstr_fd(tet.map[i], 2);
 		ft_putstr_fd("\n", 2);
 		i++;
 	}
+	ft_putstr_fd("\n@@@showed map\n", 2);
+*/
 // mvoe the O and X till half or 1/3 of y then spread it to the angle
 // create a checker to detect if it touched top then need tot ouch bottom.
 // keep the coord and if tetri_x > tetri_y stick it to the left
 // else top
-	ft_putstr_fd("\n@@@showed map\n", 2);
+
 	if (fil->my_y > fil->enemy_y && fil->my_x > fil->enemy_x)
 	{
-		if (map[0][0] == '.' && (check_line(tab, fil, 0, fil->line / 3) == 0)
-			&& (check_line(tab, fil, 1, ((fil->line * 2) / 3)) == 0))
+
+		if (tet.map[0][0] == '.' && (check_line(tet.map, fil, 0, fil->line / 3) == 0)
+				&& (check_line(tet.map, fil, 1, ((fil->line * 2) / 3)) == 0))
 		{
-			if (topleft(map, tetri, fil) == 0)
+			if (topright(tet.map, tetri, fil) == 0)
 			{
 				ft_printf("0 0\n");
 				exit (0);
 			}
 		}
-		else if (map[fil->line - 1][0] == '.' && (check_side(tab, fil, 0, 0) == 0))
+		else if ((check_side(tet.map, fil, 1, 0) == 1) && check_line(tet.map, fil, 2, 0) == 1)
 		{
-			if (middlebottomleft(map, tetri, fil) == 0)
+			if (virusup(tet.map, tet.tetri, fil) == 0)
 			{
-				if (bottomleft(map, tetri, fil) == 0)
+				if (bottomright(tet.map, tet.tetri, fil) == 0)
 				{
-					if (topright(map, tetri, fil) == 0)
+					ft_putstr_fd("hell no\n", 2);
+					ft_printf("0 0\n");
+					exit (0);
+				}
+			}
+		}
+		else if (tet.map[fil->line - 1][0] == '.' && (check_side(tet.map, fil, 0, 0) == 0)
+				 && tet.tetri_x > tet.tetri_y)
+		{
+			if (middlebottomleft(tet.map, tet.tetri, fil) == 0)
+			{
+				if (bottomleft(tet.map, tet.tetri, fil) == 0)
+				{
+					if (topright(tet.map, tet.tetri, fil) == 0) //top right
 					{
+						ft_putstr_fd("damn\n", 2);
 						ft_printf("0 0\n");
 						exit (0);
 					}
 				}
 			}
 		}
-		else if (map[0][fil->col - 1] == '.')
+		else if (tet.map[0][fil->col - 1] == '.' && (check_line(tet.map, fil, 2, 0) == 0))
 		{
-			if (topright(map, tetri, fil) == 0)
+			if (topright(tet.map, tet.tetri, fil) == 0)
 			{
+				if (topleft(tet.map, tet.tetri, fil) == 0)
+				{
+					ft_putstr_fd("lel\n", 2);
+					ft_printf("0 0\n");
+					exit (0);
+				}
+			}
+		}
+/*
+		else if (tet.map[0][0] == '.')
+		{
+			if (topleft(tet.map, tet.tetri, fil) == 0)
+			{
+				if (topright(tet.map, tet.tetri, fil) == 0)
+				{
+					if (bottomright(tet.map, tet.tetri, fil) == 0)
+					{
+						ft_putstr_fd("wtf\n", 2);
+						ft_printf("0 0\n", 2);
+						exit (0);
+					}
+				}
+			}
+		}
+*/
+		else if (tet.map[fil->line - 1][fil->col - 1] == '.')
+		{
+			if (bottomright(tet.map, tet.tetri, fil) == 0)
+			{
+				ft_putstr_fd("hell yeah\n", 2);
 				ft_printf("0 0\n");
 				exit (0);
 			}
 		}
-		else if (map[fil->line - 1][fil->col - 1] == '.')
-		{
-			if (bottomright(map, tetri, fil) == 0)
-			{
-				ft_printf("0 0\n");
-				exit (0);
-			}
-		}
-		else if (bottomright(map, tetri, fil) == 0)
+		else if (topleft(tet.map, tet.tetri, fil) == 0)
 		{
 			ft_printf("0 0\n");
 			exit (0);
@@ -135,27 +174,68 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 	}
 	else
 	{
-		if (map[0][fil->col - 1] == '.')
+		if (check_surroundx(tet.map, fil) == 1 && check_line(tet.map, fil, 1, fil->line - 1) == 1)
 		{
-			if (topright(map, tetri, fil) == 0)
+//			if (surroundx(tet.map, tet.tetri, fil) == 1)
+			if (virusdown(tet.map, tet.tetri, fil) == 1)
+				return ;
+		}
+		if (check_line(tet.map, fil, 1, 0) == 1)
+		{
+			if (bottomright(tet.map, tet.tetri, fil) == 1)
+				return ;
+		}
+		if (check_line(tet.map, fil, 1, fil->line / 4) == 0)
+		{
+			if (gotomiddlefromo(tet.map, tet.tetri, fil) == 1)
+			return ;
+		}
+		else if (tet.map[0][fil->col - 1] == '.' && tet.tetri_x >= tet.tetri_y)
+		{
+			if (topright(tet.map, tet.tetri, fil) == 0)
 			{
-				ft_printf("0 0\n");
+				if (bottomright(tet.map, tet.tetri, fil) == 0)
+				{
+					ft_printf("0 0\n");
+					exit (0);
+				}
+			}
+		}
+	/*
+		else if (tet.map[fil->line - 1][fil->col - 1] == '.')
+		{
+			if (bottomright(tet.map, tet.tetri, fil) == 0)
+			{
+				ft_printf("0 0 \n");
 				exit (0);
 			}
 		}
-		else if (bottomleft(map, tetri, fil) == 0)
+	*/
+		else if (tet.map[fil->line - 1][0] == '.')
 		{
-//			if (bottomright(map, tetri, fil) == 0)
-//			{
-//				if (topleft(map, tetri, fil) == 0)
-//				{
-					ft_printf("0 0\n");
-					exit (0);
-//				}
-//			}
+			if (bottomleft(tet.map, tet.tetri, fil) == 0)
+			{
+				ft_printf("0 0 \n");
+				exit (0);
+			}
+		}
+		else if (middletotopright(tet.map, tet.tetri, fil) == 0)
+		{
+			if (bottomright(tet.map, tet.tetri, fil) == 0)
+			{
+				if (topleft(tet.map, tet.tetri, fil) == 0)
+				{
+					if (bottomleft(tet.map, tet.tetri, fil) == 0)
+					{
+						ft_printf("0 0\n");
+						exit (0);
+					}
+				}
+			}
 		}
 	}
-	freetab(map);
+
+	freetab(tet.map);
 }
 
 void		first_move(t_fil *fil, char **tab)

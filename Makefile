@@ -6,7 +6,7 @@
 #    By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/23 23:09:46 by ryaoi             #+#    #+#              #
-#    Updated: 2017/03/28 23:01:05 by ryaoi            ###   ########.fr        #
+#    Updated: 2017/03/30 00:27:42 by ryaoi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ SRC		= main.c \
 		  freetab.c \
 		  first_move.c \
 		  ft_check.c \
-		  ft_direction.c
+		  ft_direction.c \
+		  ft_odirections.c \
+		  ft_checko.c
 
 OBJ		= $(SRC:.c=.o)
 

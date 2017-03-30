@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:34:00 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/29 01:29:55 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/03/30 02:53:44 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,16 @@ char		**read_player(t_fil *fil)
 
 char		**read_map(void)
 {
-	char		buf[4096];
+	char		buf[8192];
 	char		*str;
 	char		**tab;
 	int			ret;
 
 	str = ft_strnew(0);
-	ft_bzero(buf, 4096);
+	ft_bzero(buf, 8192);
 	ft_putstr_fd("waiting for read\n", 2);
 	usleep(200 * 500);
-	if ((ret = (read(0, buf, 4096))) > 0)
+	if ((ret = (read(0, buf, 8192))) > 0)
 	{
 		ft_putstr_fd(ft_itoa(ret), 2);
 		buf[ret] = '\0';
@@ -96,7 +96,7 @@ char		**read_map(void)
 			str = ft_strdup(buf);
 		else
 			str = ft_strjoini(str, buf, 1);
-		ft_bzero(buf, 4096);
+		ft_bzero(buf, 8192);
 	}
 	ft_putstr_fd("end of read\n", 2);
 	if (ret == -1)

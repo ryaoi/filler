@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 20:32:29 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/29 01:03:24 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/03/30 02:19:52 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define FILLER_H
 
 # include "libft/libft.h"
+
+typedef	struct		s_tetri
+{
+	int				tetri_x;
+	int				tetri_y;
+	char			**tetri;
+	char			**map;
+}					t_tetri;
 
 typedef	struct		s_fil
 {
@@ -42,6 +50,15 @@ int		topright(char **tab, char **tetri, t_fil *fil);
 int		topleft(char **tab, char **tetri, t_fil *fil);
 int		middlebottomleft(char **tab, char **tetri, t_fil *fil);
 int		testleft(char **tab, char **tetri, t_fil *fil);
-
+int		fromoriginy(char **tab, char **tetri, t_fil *fil);
+int		fromoriginx(char **tab, char **tetri, t_fil *fil);
+int		fromoriginxdown(char **tab, char **tetri, t_fil *fil);
+int		fromoriginydown(char **tab, char **tetri, t_fil *fil);
+int		gotomiddlefromo(char **tab, char **tetri, t_fil *fil);
+int		middletotopright(char **tab, char **tetri, t_fil *fil);
+int		virusdown(char **tab, char **tetri, t_fil *fil);
+int		virusup(char **tab, char **tetri, t_fil *fil);
+int		surroundx(char **tab, char **tetri, t_fil *fil);
+int		check_surroundx(char **map, t_fil *fil);
 
 #endif
