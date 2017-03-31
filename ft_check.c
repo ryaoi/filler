@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 23:07:35 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/30 02:02:41 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/03/30 20:21:07 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ int			valid_put(char **tab, char **tetri, int i, int l, t_fil *fil)
 		clean_map(tab);
 		return (0);
 	}
-/*
 	ft_putstr_fd("yay gonna return something\n", 2);
 	x = 0;
 	while (tab[x] != 0)
@@ -102,7 +101,6 @@ int			valid_put(char **tab, char **tetri, int i, int l, t_fil *fil)
 		ft_putstr_fd("\n", 2);
 		x++;
 	}
-*/
 //	insert_tetri(tab, tetri, i, l);
 	ft_printf("%d %d\n", i, l);
 	return (1);

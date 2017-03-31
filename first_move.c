@@ -73,7 +73,6 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 	tet.map = cutmap(tab, fil);
 
 	i = 0;
-/*
 	ft_putstr_fd("\n@@@@clean map\n", 2);
 	while (tet.map[i] != 0)
 	{
@@ -81,8 +80,7 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 		ft_putstr_fd("\n", 2);
 		i++;
 	}
-	ft_putstr_fd("\n@@@showed map\n", 2);
-*/
+	ft_putstr_fd("@@@showed map\n", 2);
 	if (fil->c == 'X')
 	{
 
@@ -169,6 +167,7 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 	}
 	else
 	{
+		ft_putstr_fd("For OOOOOOOOOO\n", 2);
 		if (check_surroundx(tet.map, fil) == 1 && check_line(tet.map, fil, 1, fil->line - 1) == 1)
 		{
 			if (virusdown(tet.map, tet.tetri, fil) == 1)
@@ -184,7 +183,7 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 			if (gotomiddlefromo(tet.map, tet.tetri, fil) == 1)
 			return ;
 		}
-		if (tet.map[0][fil->col - 1] == '.' && tet.tetri_x >= tet.tetri_y) //wit helse
+		if (tet.map[0][fil->col - 1] == '.' && tet.tetri_x >= tet.tetri_y)
 		{
 			if (topright(tet.map, tet.tetri, fil) == 0)
 			{
@@ -224,6 +223,7 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 void		first_move(t_fil *fil, char **tab)
 {
 	char	**tetri;
+/*
 	int		i;
 	int		l;
 	int		x;
@@ -252,5 +252,11 @@ void		first_move(t_fil *fil, char **tab)
 		l++;
 	}
 	tetri[l] = 0;
+*/
+	ft_putstr_fd("Inside first_move\n", 2);
+	if (!(tetri = ft_readpiece()))
+		exit (EXIT_FAILURE);
+	ft_putstr_fd("got the piece yo\n", 2);
 	puttetri(tab, tetri, fil);
+	freetab(tetri);
 }

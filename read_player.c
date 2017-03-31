@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 17:34:00 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/30 02:53:44 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/03/30 20:01:47 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ char		**read_player(t_fil *fil)
 	
 	if (!(tab = read_map()))
 		return (NULL);
+
+	sleep (1);
 	if ((check_player(tab[0], "p1")) == 1)
 	{
 		fil->c = 'O';

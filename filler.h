@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 20:32:29 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/30 02:19:52 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/03/30 20:00:57 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,17 @@ typedef	struct		s_fil
 	int				my_x;
 }					t_fil;
 
+
+//renewall
+
+void	printab(char **tab);
+
+void	ft_player(t_fil *fil);
+char	**ft_readpiece(void);
+char	**ft_readmap(t_fil *fil);
+
+// 
 char	**read_player(t_fil *fil);
-void	check_plateau(char *str, t_fil *fil);
 char	**read_map(void);
 void	freetab(char **tab);
 void	recup_cord(char **tab, t_fil *fil);

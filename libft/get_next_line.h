@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include "libft.h"
 
-# define BUFF_SIZE 32
+# define BUFF_SIZE 1024
 
 typedef	struct		s_line
 {
@@ -26,6 +26,14 @@ typedef	struct		s_line
 	char			*stock;
 	struct s_line	*next;
 }					t_line;
+
+typedef struct		s_fd_buff
+{
+    int				fd;
+    unsigned int	pos;
+    ssize_t			n;
+    char			*buff;
+}					t_fd_buff;
 
 int					get_next_line(int const fd, char **line);
 

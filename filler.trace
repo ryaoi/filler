@@ -1,5 +1,6 @@
-seed = 5700
-X: error on input
-./ryaoi.filler won
+seed = 3290
+O: timedout
+./ryaoi.filler: Segfault at 0
+players/champely.filler won
 Score:
-54AGAINST53
+0AGAINST0
