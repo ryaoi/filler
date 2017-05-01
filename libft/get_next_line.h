@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 13:51:11 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/01/09 19:13:41 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/01 17:04:58 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,7 @@
 # include <stdlib.h>
 # include "libft.h"
 
-# define BUFF_SIZE 1024
-
-typedef	struct		s_line
-{
-	int				fd;
-	char			*stock;
-	struct s_line	*next;
-}					t_line;
+# define BUFF_SIZE 1
 
 typedef struct		s_fd_buff
 {

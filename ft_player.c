@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 19:18:05 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/30 21:47:24 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/01 03:27:10 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,20 @@ void		ft_player(t_fil *fil)
 
 	line = NULL;
 	ret = get_next_line(0, &line);
+	ft_putstr_fd(line, 2); //delete
 	if (check_player(line, "p1") == 1)
 	{
-		ft_putstr_fd("got OOOOOOOOOOOOOOOOOO\n", 2);
 		fil->c = 'O';
+		fil->enemy_c = 'X';
 	}
 	else
 	{
-		ft_putstr_fd("got XXXXXXXXXXXXXXX\n", 2);
 		fil->c = 'X';
+		fil->enemy_c = 'O';
 	}
 	ft_strdel(&line);
 	ret = get_next_line(0, &line);
+	ft_putstr_fd(line, 2); //delete
 	check_plateau(line, fil);
 	ft_strdel(&line);
 }

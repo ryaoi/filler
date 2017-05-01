@@ -73,14 +73,14 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 	tet.map = cutmap(tab, fil);
 
 	i = 0;
-	ft_putstr_fd("\n@@@@clean map\n", 2);
+	ft_putstr_fd("\nmap show:\n", 2);
 	while (tet.map[i] != 0)
 	{
 		ft_putstr_fd(tet.map[i], 2);
 		ft_putstr_fd("\n", 2);
 		i++;
 	}
-	ft_putstr_fd("@@@showed map\n", 2);
+	ft_putstr_fd("\n@@@end map\n", 2);
 	if (fil->c == 'X')
 	{
 
@@ -198,7 +198,7 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 		{
 			if (bottomleft(tet.map, tet.tetri, fil) == 0)
 			{
-				ft_printf("0 0 \n");
+				ft_printf("0 0\n");
 				exit (0);
 			}
 		}
@@ -223,40 +223,11 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 void		first_move(t_fil *fil, char **tab)
 {
 	char	**tetri;
-/*
-	int		i;
-	int		l;
-	int		x;
-	int		y;
-	char	*ptr;
 
-	i = 0;
-	while (ft_strncmp(tab[i], "Piece", 5) != 0)
-		i++;
-	ptr = tab[i];
-	while (!(ft_isdigit(*ptr)))
-		ptr++;
-	y = ft_atoi(ptr);
-	while ((ft_isdigit(*ptr)))
-		ptr++;
-	while (!(ft_isdigit(*ptr)))
-		ptr++;
-	x = ft_atoi(ptr);
-	tetri = malloc(sizeof(char **) * (y + 1));
-	i++;
-	l = 0;
-	while (tab[i] != 0)
-	{
-		tetri[l] = ft_strdup(tab[i]);
-		i++;
-		l++;
-	}
-	tetri[l] = 0;
-*/
 	ft_putstr_fd("Inside first_move\n", 2);
 	if (!(tetri = ft_readpiece()))
 		exit (EXIT_FAILURE);
-	ft_putstr_fd("got the piece yo\n", 2);
 	puttetri(tab, tetri, fil);
+	ft_putstr_fd("\nsent the piece info!\n", 2);
 	freetab(tetri);
 }

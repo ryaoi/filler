@@ -56,11 +56,10 @@ void		check_plateau(char *str, t_fil *fil)
 char		**read_player(t_fil *fil)
 {
 	char		**tab;
-	
+
 	if (!(tab = read_map()))
 		return (NULL);
 
-	sleep (1);
 	if ((check_player(tab[0], "p1")) == 1)
 	{
 		fil->c = 'O';
@@ -88,8 +87,6 @@ char		**read_map(void)
 
 	str = ft_strnew(0);
 	ft_bzero(buf, 4096);
-	ft_putstr_fd("waiting for read\n", 2);
-	usleep(200 * 500);
 	if ((ret = (read(0, buf, 4096))) > 0)
 	{
 		ft_putstr_fd(ft_itoa(ret), 2);

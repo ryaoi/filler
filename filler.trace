@@ -1,6 +1,4 @@
-seed = 3290
-O: timedout
-./ryaoi.filler: Segfault at 0
-players/champely.filler won
+seed = 6631
+./ryaoi.filler won
 Score:
-0AGAINST0
+114AGAINST35
