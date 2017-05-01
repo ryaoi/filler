@@ -71,16 +71,7 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 	while (tet.tetri[0][tet.tetri_x] != '\0')
 		tet.tetri_x++;
 	tet.map = cutmap(tab, fil);
-
 	i = 0;
-	ft_putstr_fd("\nmap show:\n", 2);
-	while (tet.map[i] != 0)
-	{
-		ft_putstr_fd(tet.map[i], 2);
-		ft_putstr_fd("\n", 2);
-		i++;
-	}
-	ft_putstr_fd("\n@@@end map\n", 2);
 	if (fil->c == 'X')
 	{
 

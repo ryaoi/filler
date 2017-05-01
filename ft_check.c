@@ -74,15 +74,15 @@ int			valid_put(char **tab, char **tetri, int i, int l, t_fil *fil)
 		clean_map(tab);
 		return (0);
 	}
-	ft_putstr_fd(&fil->c, 2);
-	ft_putstr_fd("yay gonna return something\n", 2);
 	x = 0;
+	/*
 	while (tab[x] != 0)
 	{
 		ft_putstr_fd(tab[x], 2);
 		ft_putstr_fd("\n", 2);
 		x++;
 	}
+	*/
 	ft_printf("%d %d\n", i, l);
 	return (1);
 }

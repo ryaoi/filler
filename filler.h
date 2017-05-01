@@ -29,7 +29,6 @@ typedef	struct		s_fil
 	int				line;
 	char			c;
 	char			enemy_c;
-	int				touched;
 	int				enemy_x;
 	int				enemy_y;
 	int				my_y;
@@ -37,19 +36,13 @@ typedef	struct		s_fil
 }					t_fil;
 
 
-//renewall
-
+// delete
 void	printab(char **tab);
-
+//
 void	ft_player(t_fil *fil);
 char	**ft_readpiece(void);
 char	**ft_readmap(t_fil *fil);
-
-// 
-char	**read_player(t_fil *fil);
-char	**read_map(void);
 void	freetab(char **tab);
-void	recup_cord(char **tab, t_fil *fil);
 char	**cutmap(char **tab, t_fil *fil);
 void	first_move(t_fil *fil, char **tab);
 int		valid_put(char **tab, char **tetri, int i, int l, t_fil *fil);

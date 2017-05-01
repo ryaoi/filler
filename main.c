@@ -35,7 +35,6 @@ int		main(void)
 	ft_player(&fil);
 	while (1)
 	{
-		ft_putstr_fd("whileeeeeeeeeeeeeeeeeee\n", 2);
 		if (!(tab = ft_readmap(&fil)))
 			exit (EXIT_FAILURE);
 		first_move(&fil, tab);

@@ -72,7 +72,6 @@ void		ft_player(t_fil *fil)
 	}
 	ft_strdel(&line);
 	ret = get_next_line(0, &line);
-	ft_putstr_fd(line, 2); //delete
 	check_plateau(line, fil);
 	ft_strdel(&line);
 }

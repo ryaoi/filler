@@ -17,7 +17,6 @@ DIR_LIB	= libft
 LIBFT	= $(DIR_LIB)/libft.a
 
 SRC		= main.c \
-		  read_player.c \
 		  ft_maps.c \
 		  freetab.c \
 		  first_move.c \
