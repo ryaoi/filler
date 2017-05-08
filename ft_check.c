@@ -31,6 +31,17 @@ static void	clean_map(char **tab)
 	}
 }
 
+static int  final_return_value(char **tab, int touched, int i, int l)
+{
+	if (touched != 1)
+	{
+		clean_map(tab);
+		return (0);
+	}
+	ft_printf("%d %d\n", i, l);
+	return (1);
+}
+
 int			valid_put(char **tab, char **tetri, int i, int l, t_fil *fil)
 {
 	int		x;
@@ -69,20 +80,5 @@ int			valid_put(char **tab, char **tetri, int i, int l, t_fil *fil)
 		}
 		y++;
 	}
-	if (touched != 1)
-	{
-		clean_map(tab);
-		return (0);
-	}
-	x = 0;
-	/*
-	while (tab[x] != 0)
-	{
-		ft_putstr_fd(tab[x], 2);
-		ft_putstr_fd("\n", 2);
-		x++;
-	}
-	*/
-	ft_printf("%d %d\n", i, l);
-	return (1);
+	return (final_return_value(tab, touched, i, l));
 }

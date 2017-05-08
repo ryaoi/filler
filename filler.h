@@ -21,6 +21,7 @@ typedef	struct		s_tetri
 	int				tetri_y;
 	char			**tetri;
 	char			**map;
+	char			**tab;
 }					t_tetri;
 
 typedef	struct		s_fil
