@@ -64,9 +64,9 @@ static void			init_plat(t_plat *plat, t_mw *mw, char *line)
 	if (plat->map_line == 15)
 		mw->multi_ratio = 20;
 	else if (plat->map_line == 24)
-		mw->multi_ratio = 10;
+		mw->multi_ratio = 14;
 	else
-		mw->multi_ratio = 5;
+		mw->multi_ratio = 6;
 	mw->win_y = (plat->map_line + 10) * mw->multi_ratio;
 	mw->win_x = (plat->map_col + 2) * mw->multi_ratio;
 }
@@ -119,10 +119,10 @@ int					main(void)
 	mw.win = mlx_new_window(mw.mlx, mw.win_x, mw.win_y, "FILLER");
 	ft_strdel(&line);
 	init_page(&(mw.page_ptr), line, plat);
-	cont_page(&(mw.page_ptr), line, plat);
+	cont_page(&(mw.page_ptr), line, &plat);
 	end_start(&mw);
 	ft_printf("The Game has finished...\n");
-	mlx_clear_window(mw.mlx, mw.win);
+	print_filler(mw.page_ptr, &mw);
 	mlx_key_hook(mw.win, my_key_funct, &mw);
 	mlx_loop(mw.mlx);
 	return (0);

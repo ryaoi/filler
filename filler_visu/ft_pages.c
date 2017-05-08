@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 07:16:26 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/05/08 09:33:05 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/08 09:47:10 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void			init_page(t_page **begin, char *line, t_plat plat)
 	add_page(begin, stock);
 }
 
-void			cont_page(t_page **begin, char *line, t_plat plat)
+void			cont_page(t_page **begin, char *line, t_plat *plat)
 {
 	line = ft_strdup("bored");
 	while (1)
@@ -84,8 +84,14 @@ void			cont_page(t_page **begin, char *line, t_plat plat)
 			get_next_line(0, &line);
 		}
 		if (ft_strncmp(line, "==", 2) == 0)
+		{
+			plat->win_o = ft_atoi(line + 10);
+			get_next_line(0, &line);
+			plat->win_x = ft_atoi(line + 10);
+			ft_printf("O:%d\nX:%d\n", plat->win_o, plat->win_x);
 			return ;
-		init_page(begin, line, plat);
+		}
+		init_page(begin, line, *plat);
 		ft_strdel(&line);
 		line = ft_strdup("dump");
 	}

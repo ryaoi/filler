@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 04:48:28 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/05/08 09:40:41 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/08 09:59:53 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct		s_plat
 {
 	int				map_col;
 	int				map_line;
+	int				win_o;
+	int				win_x;
 }					t_plat;
 
 typedef struct		s_page
@@ -59,7 +61,7 @@ void				print_elem_o(int counter, int i, t_mw *mw);
 void				print_elem_x(int counter, int i, t_mw *mw);
 void				print_elem_capo(int counter, int i, t_mw *mw);
 void				print_elem_capx(int counter, int i, t_mw *mw);
-void				cont_page(t_page **begin, char *line, t_plat plat);
+void				cont_page(t_page **begin, char *line, t_plat *plat);
 void				init_page(t_page **begin, char *line, t_plat plat);
 void				print_filler(t_page *page_ptr, t_mw *mw);
 void				end_start(t_mw *mw);
