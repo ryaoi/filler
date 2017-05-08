@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 23:07:35 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/01 03:28:30 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/08 04:10:46 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	clean_map(char **tab)
 	}
 }
 
-static int  final_return_value(char **tab, int touched, int i, int l)
+static int	final_return_value(char **tab, int touched, int i, int l)
 {
 	if (touched != 1)
 	{
@@ -42,43 +42,46 @@ static int  final_return_value(char **tab, int touched, int i, int l)
 	return (1);
 }
 
+static int	processing_check(t_tetri *tet, int i, int l, t_fil *fil)
+{
+	if (tet->map[i + tet->y][l + tet->x] == fil->c ||
+		tet->map[i + tet->y][l + tet->x] == fil->c + 32)
+		(tet->touched)++;
+	if (tet->touched == 2 || tet->map[i + tet->y][l + tet->x] == fil->enemy_c
+		|| tet->map[i + tet->y][l + tet->x] == fil->enemy_c + 32)
+	{
+		clean_map(tet->map);
+		return (0);
+	}
+	if (tet->map[i + tet->y][l + tet->x] == '.')
+		tet->map[i + tet->y][l + tet->x] = tet->tetri[tet->y][tet->x];
+	(tet->x)++;
+	return (1);
+}
+
 int			valid_put(t_tetri tet, int i, int l, t_fil *fil)
 {
-	int		x;
-	int		y;
-	int		touched;
-
-	touched = 0;
-	y = 0;
-	while (tet.tetri[y] != 0)
+	tet.touched = 0;
+	tet.y = 0;
+	while (tet.tetri[tet.y] != 0)
 	{
-		x = 0;
-		while (tet.tetri[y][x] != '\0')
+		tet.x = 0;
+		while (tet.tetri[tet.y][tet.x] != '\0')
 		{
-			if (i + y >= fil->line || l + x >= fil->col)
+			if (i + tet.y >= fil->line || l + tet.x >= fil->col)
 			{
 				clean_map(tet.map);
 				return (0);
 			}
-			if (tet.tetri[y][x] == '.')
+			if (tet.tetri[tet.y][tet.x] == '.')
 			{
-				x++;
+				(tet.x)++;
 				continue ;
 			}
-			if (tet.map[i + y][l + x] == fil->c ||
-				tet.map[i + y][l + x] == fil->c + 32)
-				touched++;
-			if (touched == 2 || tet.map[i + y][l + x] == fil->enemy_c
-				|| tet.map[i + y][l + x] == fil->enemy_c + 32)
-			{
-				clean_map(tet.map);
+			if (processing_check(&tet, i, l, fil) == 0)
 				return (0);
-			}
-			if (tet.map[i + y][l + x] == '.')
-				tet.map[i + y][l + x] = tet.tetri[y][x];
-			x++;
 		}
-		y++;
+		(tet.y)++;
 	}
-	return (final_return_value(tet.map, touched, i, l));
+	return (final_return_value(tet.map, tet.touched, i, l));
 }

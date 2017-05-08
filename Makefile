@@ -21,12 +21,13 @@ SRC		= main.c \
 		  freetab.c \
 		  first_move.c \
 		  ft_check.c \
-		  ft_direction.c \
+		  ft_direction1.c \
 		  ft_odirections.c \
 		  ft_checko.c \
 		  ft_readmap.c \
 		  ft_player.c \
-		  ft_strat_up.c
+		  ft_strat_up.c \
+		  ft_direction2.c
 
 OBJ		= $(SRC:.c=.o)
 

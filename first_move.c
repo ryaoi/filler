@@ -60,7 +60,6 @@ int			check_side(char **tab, t_fil *fil, int l, int side)
 
 static void	puttetri(char **tab, char **tetri, t_fil *fil)
 {
-	int		i;
 	t_tetri	tet;
 
 	tet.tetri = tetri;
@@ -71,7 +70,6 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 	while (tet.tetri[0][tet.tetri_x] != '\0')
 		tet.tetri_x++;
 	tet.map = cutmap(tab, fil);
-	i = 0;
 	if (fil->start > fil->line / 2)
 	{
 		if (tet.map[0][0] == '.' && (check_line(tet.map, fil, 0, fil->line / 3) == 0)
