@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 04:48:28 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/05/08 09:59:53 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/08 10:12:29 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct		s_mw
 	t_page			*start;
 	int				win_x;
 	int				win_y;
+	int				get_o;
+	int				get_x;
 	int				multi_ratio;
 	int				once;
 }					t_mw;

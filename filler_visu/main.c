@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 04:36:10 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/05/08 09:26:42 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/08 10:16:59 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void			key_start_end(int keycode, t_mw *param)
 		mlx_clear_window(param->mlx, param->win);
 		print_filler(param->page_ptr, param);
 	}
+	if (keycode == 49)
+		ft_printf("O:%d\nX:%d\n", param->get_o, param->get_x);
 }
 
 int					my_key_funct(int keycode, t_mw *param)
@@ -121,7 +123,8 @@ int					main(void)
 	init_page(&(mw.page_ptr), line, plat);
 	cont_page(&(mw.page_ptr), line, &plat);
 	end_start(&mw);
-	ft_printf("The Game has finished...\n");
+	mw.get_o = plat.win_o;
+	mw.get_x = plat.win_x;
 	print_filler(mw.page_ptr, &mw);
 	mlx_key_hook(mw.win, my_key_funct, &mw);
 	mlx_loop(mw.mlx);
