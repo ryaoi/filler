@@ -70,7 +70,7 @@ void        strat_up(t_fil *fil, t_tetri tet)
         {
             if (bottomleft(tet, fil) == 0)
             {
-                if (bottomleft(tet, fil) == 0)
+                if (topleft(tet, fil) == 0)
                     failure();
             }
         }
