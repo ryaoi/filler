@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-int				gotomiddlefromo(char **tab, char **tetri, t_fil *fil)
+int				gotomiddlefromo(t_tetri tet, t_fil *fil)
 {
 		int		i;
 		int		l;
@@ -23,7 +23,7 @@ int				gotomiddlefromo(char **tab, char **tetri, t_fil *fil)
 		l = (fil->col - 1) / 3;
 		while (l >= 0)
 		{
-			if (valid_put(tab, tetri, i, l, fil) == 1)
+			if (valid_put(tet, i, l, fil) == 1)
 				return (1);
 			l--;
 		}
@@ -31,7 +31,7 @@ int				gotomiddlefromo(char **tab, char **tetri, t_fil *fil)
 	}
 	return (0);
 }
-int			middletotopright(char **tab, char **tetri, t_fil *fil)
+int			middletotopright(t_tetri tet, t_fil *fil)
 {
 	int		i;
 	int		l;
@@ -42,7 +42,7 @@ int			middletotopright(char **tab, char **tetri, t_fil *fil)
 		l = fil->line - 1;
 		while (l >= 0)
 		{
-			if (valid_put(tab, tetri, l, i, fil) == 1)
+			if (valid_put(tet, l, i, fil) == 1)
 				return (1);
 			l--;
 		}
@@ -51,7 +51,7 @@ int			middletotopright(char **tab, char **tetri, t_fil *fil)
 	return (0);
 }
 
-int			virusdown(char **tab, char **tetri, t_fil *fil)
+int			virusdown(t_tetri tet, t_fil *fil)
 {
 	int		i;
 	int		l;
@@ -60,11 +60,11 @@ int			virusdown(char **tab, char **tetri, t_fil *fil)
 	while (i >= 0)
 	{
 		l = 0;
-		while (l < fil->line - 1 && tab[l][i] == '.')
+		while (l < fil->line - 1 && tet.map[l][i] == '.')
 			l++;
 		while (l < fil->line - 1)
 		{
-			if (valid_put(tab, tetri, l, i, fil) == 1)
+			if (valid_put(tet, l, i, fil) == 1)
 				return (1);
 			l++;
 		}
@@ -73,7 +73,7 @@ int			virusdown(char **tab, char **tetri, t_fil *fil)
 	return (0);
 }
 
-int			virusup(char **tab, char **tetri, t_fil *fil)
+int			virusup(t_tetri tet, t_fil *fil)
 {
 	int		i;
 	int		l;
@@ -82,13 +82,13 @@ int			virusup(char **tab, char **tetri, t_fil *fil)
 	while (i < fil->col - 1)
 	{
 		l = 0;
-		while (l < fil->line - 1 && tab[l][i] == '.')
+		while (l < fil->line - 1 && tet.map[l][i] == '.')
 			l++;
-		while (l < fil->line - 1 && tab[l][i] == 'X')
+		while (l < fil->line - 1 && tet.map[l][i] == 'X')
 			l++;
 		while (l < fil->line - 1)
 		{
-			if (valid_put(tab, tetri, l, i, fil) == 1)
+			if (valid_put(tet, l, i, fil) == 1)
 				return (1);
 			l++;
 		}
@@ -97,7 +97,7 @@ int			virusup(char **tab, char **tetri, t_fil *fil)
 	return (0);
 }
 
-int			surroundx(char **tab, char **tetri, t_fil *fil)
+int			surroundx(t_tetri tet, t_fil *fil)
 {
 	int		i;
 	int		l;
@@ -106,11 +106,11 @@ int			surroundx(char **tab, char **tetri, t_fil *fil)
 	while (i >= 0)
 	{
 		l = 0;
-		while (tab[i][l] == '.' && l < fil->col - 1)
+		while (tet.map[i][l] == '.' && l < fil->col - 1)
 			l++;
 		while (l < fil->col - 1)
 		{
-			if (valid_put(tab, tetri, i, l, fil) == 1)
+			if (valid_put(tet, i, l, fil) == 1)
 				return (1);
 			l++;
 		}

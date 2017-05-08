@@ -23,17 +23,17 @@ static int  invador(t_fil *fil, t_tetri tet)
     if (check_surroundx(tet.map, fil) == 1 &&
         check_line(tet.map, fil, 1, fil->line - 1) == 1)
     {
-        if (virusdown(tet.map, tet.tetri, fil) == 1)
+        if (virusdown(tet, fil) == 1)
             return (1);
     }
     if (check_line(tet.map, fil, 1, 0) == 1)
     {
-        if (bottomright(tet.map, tet.tetri, fil) == 1)
+        if (bottomright(tet, fil) == 1)
             return (1);
     }
     if (check_line(tet.map, fil, 1, fil->line / 4) == 0)
     {
-        if (gotomiddlefromo(tet.map, tet.tetri, fil) == 1)
+        if (gotomiddlefromo(tet, fil) == 1)
             return (1);
     }
     return (0);
@@ -45,9 +45,9 @@ static int  invade(t_fil *fil, t_tetri tet)
         return (1);
     else if (tet.map[0][fil->col - 1] == '.' && tet.tetri_x >= tet.tetri_y)
     {
-        if (topright(tet.map, tet.tetri, fil) == 0)
+        if (topright(tet, fil) == 0)
         {
-            if (bottomright(tet.map, tet.tetri, fil) == 0)
+            if (bottomright(tet, fil) == 0)
                 failure();
         }
         return (1);
@@ -61,16 +61,16 @@ void        strat_up(t_fil *fil, t_tetri tet)
         return ;
     else if (tet.map[fil->line - 1][0] == '.')
     {
-        if (bottomleft(tet.map, tet.tetri, fil) == 0)
+        if (bottomleft(tet, fil) == 0)
             failure();
     }
-    else if (middletotopright(tet.map, tet.tetri, fil) == 0)
+    else if (middletotopright(tet, fil) == 0)
     {
-        if (bottomright(tet.map, tet.tetri, fil) == 0)
+        if (bottomright(tet, fil) == 0)
         {
-            if (topleft(tet.map, tet.tetri, fil) == 0)
+            if (topleft(tet, fil) == 0)
             {
-                if (bottomleft(tet.map, tet.tetri, fil) == 0)
+                if (bottomleft(tet, fil) == 0)
                     failure();
             }
         }

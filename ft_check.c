@@ -42,7 +42,7 @@ static int  final_return_value(char **tab, int touched, int i, int l)
 	return (1);
 }
 
-int			valid_put(char **tab, char **tetri, int i, int l, t_fil *fil)
+int			valid_put(t_tetri tet, int i, int l, t_fil *fil)
 {
 	int		x;
 	int		y;
@@ -50,35 +50,35 @@ int			valid_put(char **tab, char **tetri, int i, int l, t_fil *fil)
 
 	touched = 0;
 	y = 0;
-	while (tetri[y] != 0)
+	while (tet.tetri[y] != 0)
 	{
 		x = 0;
-		while (tetri[y][x] != '\0')
+		while (tet.tetri[y][x] != '\0')
 		{
 			if (i + y >= fil->line || l + x >= fil->col)
 			{
-				clean_map(tab);
+				clean_map(tet.map);
 				return (0);
 			}
-			if (tetri[y][x] == '.')
+			if (tet.tetri[y][x] == '.')
 			{
 				x++;
 				continue ;
 			}
-			if (tab[i + y][l + x] == fil->c ||
-				tab[i + y][l + x] == fil->c + 32)
+			if (tet.map[i + y][l + x] == fil->c ||
+				tet.map[i + y][l + x] == fil->c + 32)
 				touched++;
-			if (touched == 2 || tab[i + y][l + x] == fil->enemy_c
-				|| tab[i + y][l + x] == fil->enemy_c + 32)
+			if (touched == 2 || tet.map[i + y][l + x] == fil->enemy_c
+				|| tet.map[i + y][l + x] == fil->enemy_c + 32)
 			{
-				clean_map(tab);
+				clean_map(tet.map);
 				return (0);
 			}
-			if (tab[i + y][l + x] == '.')
-				tab[i + y][l + x] = tetri[y][x];
+			if (tet.map[i + y][l + x] == '.')
+				tet.map[i + y][l + x] = tet.tetri[y][x];
 			x++;
 		}
 		y++;
 	}
-	return (final_return_value(tab, touched, i, l));
+	return (final_return_value(tet.map, touched, i, l));
 }

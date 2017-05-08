@@ -77,7 +77,7 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 		if (tet.map[0][0] == '.' && (check_line(tet.map, fil, 0, fil->line / 3) == 0)
 				&& (check_line(tet.map, fil, 1, ((fil->line * 2) / 3)) == 0))
 		{
-			if (topright(tet.map, tetri, fil) == 0)
+			if (topright(tet, fil) == 0)
 			{
 				ft_printf("0 0\n");
 				exit (0);
@@ -85,9 +85,9 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 		}
 		else if ((check_side(tet.map, fil, 1, 0) == 1) && check_line(tet.map, fil, 2, 0) == 1)
 		{
-			if (virusup(tet.map, tet.tetri, fil) == 0)
+			if (virusup(tet, fil) == 0)
 			{
-				if (bottomright(tet.map, tet.tetri, fil) == 0)
+				if (bottomright(tet, fil) == 0)
 				{
 					ft_printf("0 0\n");
 					exit (0);
@@ -97,40 +97,40 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 		else if (tet.map[fil->line - 1][0] == '.' && (check_side(tet.map, fil, 0, 0) == 0)
 				 && tet.tetri_x > tet.tetri_y)
 		{
-			if (middlebottomleft(tet.map, tet.tetri, fil) == 0)
+			if (middlebottomleft(tet, fil) == 0)
 			{
-				if (bottomleft(tet.map, tet.tetri, fil) == 0)
+				if (bottomleft(tet, fil) == 0)
 				{
-					if (topright(tet.map, tet.tetri, fil) == 0)
+					if (topright(tet, fil) == 0)
 						failure();
 				}
 			}
 		}
 		else if (tet.map[0][fil->col - 1] == '.' && (check_line(tet.map, fil, 2, 0) == 0))
 		{
-			if (topright(tet.map, tet.tetri, fil) == 0)
+			if (topright(tet, fil) == 0)
 			{
-				if (topleft(tet.map, tet.tetri, fil) == 0)
+				if (topleft(tet, fil) == 0)
 					failure();
 			}
 		}
 		else if (tet.map[0][0] == '.')
 		{
-			if (topleft(tet.map, tet.tetri, fil) == 0)
+			if (topleft(tet, fil) == 0)
 			{
-				if (topright(tet.map, tet.tetri, fil) == 0)
+				if (topright(tet, fil) == 0)
 				{
-					if (bottomright(tet.map, tet.tetri, fil) == 0)
+					if (bottomright(tet, fil) == 0)
 						failure();
 				}
 			}
 		}
 		else if (tet.map[fil->line - 1][fil->col - 1] == '.')
 		{
-			if (bottomright(tet.map, tet.tetri, fil) == 0)
+			if (bottomright(tet, fil) == 0)
 				failure();
 		}
-		else if (topleft(tet.map, tet.tetri, fil) == 0)
+		else if (topleft(tet, fil) == 0)
 			failure();
 	}
 	else

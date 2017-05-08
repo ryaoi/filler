@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-int			topleft(char **tab, char **tetri, t_fil *fil)
+int			topleft(t_tetri tet, t_fil *fil)
 {
 	int		i;
 	int		l;
@@ -23,7 +23,7 @@ int			topleft(char **tab, char **tetri, t_fil *fil)
 		l = 0;
 		while (l < fil->col)
 		{
-			if (valid_put(tab, tetri, i, l, fil) == 1)
+			if (valid_put(tet, i, l, fil) == 1)
 				return (1);
 			l++;
 		}
@@ -32,7 +32,7 @@ int			topleft(char **tab, char **tetri, t_fil *fil)
 	return (0);
 }
 
-int			topright(char **tab, char **tetri, t_fil *fil)
+int			topright(t_tetri tet, t_fil *fil)
 {
 	int		i;
 	int		l;
@@ -43,7 +43,7 @@ int			topright(char **tab, char **tetri, t_fil *fil)
 		l = fil->col - 1;
 		while (l >= 0)
 		{
-			if (valid_put(tab, tetri, i, l, fil) == 1)
+			if (valid_put(tet, i, l, fil) == 1)
 				return (1);
 			l--;
 		}
@@ -52,7 +52,7 @@ int			topright(char **tab, char **tetri, t_fil *fil)
 	return (0);
 }
 
-int			bottomright(char **tab, char **tetri, t_fil *fil)
+int			bottomright(t_tetri tet, t_fil *fil)
 {
 	int		i;
 	int		l;
@@ -63,7 +63,7 @@ int			bottomright(char **tab, char **tetri, t_fil *fil)
 		l = fil->col - 1;
 		while (l >= 0)
 		{
-			if (valid_put(tab, tetri, i, l, fil) == 1)
+			if (valid_put(tet, i, l, fil) == 1)
 				return (1);
 			l--;
 		}
@@ -72,7 +72,7 @@ int			bottomright(char **tab, char **tetri, t_fil *fil)
 	return (0);
 }
 
-int			middlebottomleft(char **tab, char **tetri, t_fil *fil)
+int			middlebottomleft(t_tetri tet, t_fil *fil)
 {
 	int		i;
 	int		l;
@@ -83,7 +83,7 @@ int			middlebottomleft(char **tab, char **tetri, t_fil *fil)
 		l = 0;
 		while (l < fil->col)
 		{
-			if (valid_put(tab, tetri, i, l, fil) == 1)
+			if (valid_put(tet, i, l, fil) == 1)
 				return (1);
 			l++;
 		}
@@ -92,7 +92,7 @@ int			middlebottomleft(char **tab, char **tetri, t_fil *fil)
 	return (0);
 }
 
-int			testleft(char **tab, char **tetri, t_fil *fil)
+int			testleft(t_tetri tet, t_fil *fil)
 {
 	int		i;
 	int		l;
@@ -103,7 +103,7 @@ int			testleft(char **tab, char **tetri, t_fil *fil)
 		l = 0;
 		while (l < fil->line)
 		{
-			if (valid_put(tab, tetri, i, l, fil) == 1)
+			if (valid_put(tet, i, l, fil) == 1)
 				return (1);
 			l++;
 		}
@@ -112,42 +112,42 @@ int			testleft(char **tab, char **tetri, t_fil *fil)
 	return (0);
 }
 
-int			fromoriginy(char **tab, char **tetri, t_fil *fil)
+int			fromoriginy(t_tetri tet, t_fil *fil)
 {
 	int		l;
 
 	l = 0;
 	while (l < fil->col)
 	{
-		if (valid_put(tab, tetri, fil->my_y, l, fil) == 1)
+		if (valid_put(tet, fil->my_y, l, fil) == 1)
 			return (1);
 		l++;
 	}
 	return (0);
 }
 
-int			fromoriginx(char **tab, char **tetri, t_fil *fil)
+int			fromoriginx(t_tetri tet, t_fil *fil)
 {
 	int		l;
 
 	l = 0;
 	while (l < fil->line)
 	{
-		if (valid_put(tab, tetri, l, fil->my_x, fil) == 1)
+		if (valid_put(tet, l, fil->my_x, fil) == 1)
 			return (1);
 		l++;
 	}
 	return (0);
 }
 
-int			fromoriginxdown(char **tab, char **tetri, t_fil *fil)
+int			fromoriginxdown(t_tetri tet, t_fil *fil)
 {
 	int		l;
 
 	l = fil->line - 1;
 	while (l >= 0)
 	{
-		if (valid_put(tab, tetri, l, fil->my_x, fil) == 1)
+		if (valid_put(tet, l, fil->my_x, fil) == 1)
 			return (1);
 		l--;
 	}
@@ -155,14 +155,14 @@ int			fromoriginxdown(char **tab, char **tetri, t_fil *fil)
 
 }
 
-int			fromoriginydown(char **tab, char **tetri, t_fil *fil)
+int			fromoriginydown(t_tetri tet, t_fil *fil)
 {
 	int		l;
 
 	l = fil->col - 1;
 	while (l >= 0)
 	{
-		if (valid_put(tab, tetri, fil->my_y, l, fil) == 1)
+		if (valid_put(tet, fil->my_y, l, fil) == 1)
 			return (1);
 		l--;
 	}
@@ -170,7 +170,7 @@ int			fromoriginydown(char **tab, char **tetri, t_fil *fil)
 
 }
 
-int			bottomleft(char **tab, char **tetri, t_fil *fil)
+int			bottomleft(t_tetri tet, t_fil *fil)
 {
 	int		i;
 	int		l;
@@ -181,7 +181,7 @@ int			bottomleft(char **tab, char **tetri, t_fil *fil)
 		l = 0;
 		while (l < fil->col)
 		{
-			if (valid_put(tab, tetri, i, l, fil) == 1)
+			if (valid_put(tet, i, l, fil) == 1)
 				return (1);
 			l++;
 		}

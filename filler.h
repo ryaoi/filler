@@ -21,7 +21,6 @@ typedef	struct		s_tetri
 	int				tetri_y;
 	char			**tetri;
 	char			**map;
-	char			**tab;
 }					t_tetri;
 
 typedef	struct		s_fil
@@ -49,24 +48,24 @@ void    failure(void);
 char	**cutmap(char **tab, t_fil *fil);
 void	first_move(t_fil *fil, char **tab);
 void    strat_up(t_fil *fil, t_tetri tet);
-int		valid_put(char **tab, char **tetri, int i, int l, t_fil *fil);
+int		valid_put(t_tetri tet, int i, int l, t_fil *fil);
 int		check_line(char **tab, t_fil *fil, int l, int line);
 int		check_side(char **tab, t_fil *fil, int l, int line);
-int		bottomright(char **tab, char **tetri, t_fil *fil);
-int		bottomleft(char **tab, char **tetri, t_fil *fil);
-int		topright(char **tab, char **tetri, t_fil *fil);
-int		topleft(char **tab, char **tetri, t_fil *fil);
-int		middlebottomleft(char **tab, char **tetri, t_fil *fil);
-int		testleft(char **tab, char **tetri, t_fil *fil);
-int		fromoriginy(char **tab, char **tetri, t_fil *fil);
-int		fromoriginx(char **tab, char **tetri, t_fil *fil);
-int		fromoriginxdown(char **tab, char **tetri, t_fil *fil);
-int		fromoriginydown(char **tab, char **tetri, t_fil *fil);
-int		gotomiddlefromo(char **tab, char **tetri, t_fil *fil);
-int		middletotopright(char **tab, char **tetri, t_fil *fil);
-int		virusdown(char **tab, char **tetri, t_fil *fil);
-int		virusup(char **tab, char **tetri, t_fil *fil);
-int		surroundx(char **tab, char **tetri, t_fil *fil);
+int		bottomright(t_tetri tet, t_fil *fil);
+int		bottomleft(t_tetri tet, t_fil *fil);
+int		topright(t_tetri tet, t_fil *fil);
+int		topleft(t_tetri tet, t_fil *fil);
+int		middlebottomleft(t_tetri tet, t_fil *fil);
+int		testleft(t_tetri tet, t_fil *fil);
+int		fromoriginy(t_tetri tet, t_fil *fil);
+int		fromoriginx(t_tetri tet, t_fil *fil);
+int		fromoriginxdown(t_tetri tet, t_fil *fil);
+int		fromoriginydown(t_tetri tet, t_fil *fil);
+int		gotomiddlefromo(t_tetri tet, t_fil *fil);
+int		middletotopright(t_tetri tet, t_fil *fil);
+int		virusdown(t_tetri tet, t_fil *fil);
+int		virusup(t_tetri tet, t_fil *fil);
+int		surroundx(t_tetri tet, t_fil *fil);
 int		check_surroundx(char **map, t_fil *fil);
 
 #endif
