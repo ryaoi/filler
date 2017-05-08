@@ -12,21 +12,6 @@
 
 #include "filler.h"
 
-void	printab(char **tab)
-{
-	int		i;
-
-	i = 0;
-	ft_putstr_fd("\nBegin@@@@\n", 2);
-	while (tab[i] != 0)
-	{
-		ft_putstr_fd(tab[i], 2);
-		ft_putchar_fd('\n', 2);
-		i++;
-	}
-	ft_putstr_fd("End@@@@\n", 2);
-}
-
 int		main(void)
 {
 	t_fil	fil;

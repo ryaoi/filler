@@ -60,7 +60,6 @@ void		ft_player(t_fil *fil)
 	line = NULL;
 	fil->start = 0;
 	ret = get_next_line(0, &line);
-	ft_putstr_fd(line, 2); //delete
 	if (check_player(line, "p1") == 1)
 	{
 		fil->c = 'O';

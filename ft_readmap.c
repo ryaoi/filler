@@ -20,18 +20,12 @@ char		**ft_readpiece(void)
 	char	*line;
 	int		i;
 
-	ft_putstr_fd("Inside ft_readpiece\n", 2);
-	ft_putstr_fd("1st gnl!!!!\n", 2);
 	get_next_line(0, &line);
-	ft_putstr_fd(line, 2);
-	ft_putstr_fd("\nPiece is:\n", 2);
 	piece = ft_atoi(line + 6);
-	ft_putstr_fd(ft_itoa(piece), 2);
 	if (!(tetri = (char **)malloc(sizeof(char *) * piece + 1)))
 		return (NULL);
 	i = 0;
 	ft_strdel(&line);
-	ft_putstr_fd("\nbefore while\n", 2);
 	while (i < piece)
 	{
 		get_next_line(0, &line);
@@ -43,8 +37,6 @@ char		**ft_readpiece(void)
 		i++;
 	}
 	tetri[i] = 0;
-	ft_putstr_fd("tetri piece that i got\n", 2);
-	printab(tetri);
 	return (tetri);
 }
 
@@ -63,8 +55,6 @@ char		**ft_readmap(t_fil *fil)
 	i = 0;
 	if (!(map = (char **)malloc(sizeof(char *) * max + 1)))
 		return (NULL);
-	ft_putstr_fd("\nmax is:", 2);
-	ft_putstr_fd(ft_itoa(max), 2); //debug
 	while (i < max)
 	{
 		get_next_line(0, &line);
@@ -76,6 +66,5 @@ char		**ft_readmap(t_fil *fil)
 		i++;
 	}
 	map[i] = 0;
-	printab(map);
 	return (map);
 }

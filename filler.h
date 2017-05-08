@@ -40,9 +40,6 @@ typedef	struct		s_fil
 }					t_fil;
 
 
-// delete
-void	printab(char **tab);
-//
 void	ft_player(t_fil *fil);
 char	**ft_readpiece(void);
 char	**ft_readmap(t_fil *fil);
