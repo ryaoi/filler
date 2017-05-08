@@ -12,32 +12,24 @@
 
 #include "filler.h"
 
-static void	get_cord(char c, t_fil *fil, int col, int line)
+static void	get_cord(t_fil *fil, char **map)
 {
-	if (c == 'O')
+	int		i;
+	int		l;
+
+	i = 0;
+	if (fil->start == 0)
 	{
-		if (fil->c == 'O')
+		while (map[i] != 0)
 		{
-			fil->my_x = col;
-			fil->my_y = line;
-		}
-		else
-		{
-			fil->enemy_x = col;
-			fil->enemy_y = line;
-		}
-	}
-	else
-	{
-		if (fil->c == 'X')
-		{
-			fil->my_x = col;
-			fil->my_y = line;
-		}
-		else
-		{
-			fil->enemy_x = col;
-			fil->enemy_y = line;
+			l = 0;
+			while (map[i][l] != '\0')
+			{
+				if (map[i][l] == fil->c)
+					fil->start = i;
+				l++;
+			}
+			i++;
 		}
 	}
 }
@@ -66,5 +58,6 @@ char		**cutmap(char **tab, t_fil *fil)
 		i++;
 	}
 	ret[i - skip]  = 0;
+	get_cord(fil, ret);
 	return (ret);
 }

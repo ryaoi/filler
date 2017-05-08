@@ -33,6 +33,7 @@ typedef	struct		s_fil
 	int				enemy_y;
 	int				my_y;
 	int				my_x;
+	int				start;
 }					t_fil;
 
 
@@ -43,9 +44,13 @@ void	ft_player(t_fil *fil);
 char	**ft_readpiece(void);
 char	**ft_readmap(t_fil *fil);
 void	freetab(char **tab);
+void    failure(void);
 char	**cutmap(char **tab, t_fil *fil);
 void	first_move(t_fil *fil, char **tab);
+void    strat_up(t_fil *fil, t_tetri tet);
 int		valid_put(char **tab, char **tetri, int i, int l, t_fil *fil);
+int		check_line(char **tab, t_fil *fil, int l, int line);
+int		check_side(char **tab, t_fil *fil, int l, int line);
 int		bottomright(char **tab, char **tetri, t_fil *fil);
 int		bottomleft(char **tab, char **tetri, t_fil *fil);
 int		topright(char **tab, char **tetri, t_fil *fil);

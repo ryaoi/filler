@@ -11,7 +11,7 @@
 
 #include "filler.h"
 
-static int	check_line(char **tab, t_fil *fil, int l, int line)
+int			check_line(char **tab, t_fil *fil, int l, int line)
 {
 	int		i;
 
@@ -32,7 +32,7 @@ static int	check_line(char **tab, t_fil *fil, int l, int line)
 	return (0);
 }
 
-static int	check_side(char **tab, t_fil *fil, int l, int side)
+int			check_side(char **tab, t_fil *fil, int l, int side)
 {
 	int		i;
 	int		lim;
@@ -72,9 +72,8 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 		tet.tetri_x++;
 	tet.map = cutmap(tab, fil);
 	i = 0;
-	if (fil->c == 'X')
+	if (fil->start > fil->line / 2)
 	{
-
 		if (tet.map[0][0] == '.' && (check_line(tet.map, fil, 0, fil->line / 3) == 0)
 				&& (check_line(tet.map, fil, 1, ((fil->line * 2) / 3)) == 0))
 		{
@@ -90,7 +89,6 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 			{
 				if (bottomright(tet.map, tet.tetri, fil) == 0)
 				{
-					ft_putstr_fd("hell no\n", 2);
 					ft_printf("0 0\n");
 					exit (0);
 				}
@@ -103,12 +101,8 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 			{
 				if (bottomleft(tet.map, tet.tetri, fil) == 0)
 				{
-					if (topright(tet.map, tet.tetri, fil) == 0) //top right
-					{
-						ft_putstr_fd("damn\n", 2);
-						ft_printf("0 0\n");
-						exit (0);
-					}
+					if (topright(tet.map, tet.tetri, fil) == 0)
+						failure();
 				}
 			}
 		}
@@ -117,14 +111,9 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 			if (topright(tet.map, tet.tetri, fil) == 0)
 			{
 				if (topleft(tet.map, tet.tetri, fil) == 0)
-				{
-					ft_putstr_fd("lel\n", 2);
-					ft_printf("0 0\n");
-					exit (0);
-				}
+					failure();
 			}
 		}
-/*
 		else if (tet.map[0][0] == '.')
 		{
 			if (topleft(tet.map, tet.tetri, fil) == 0)
@@ -132,82 +121,20 @@ static void	puttetri(char **tab, char **tetri, t_fil *fil)
 				if (topright(tet.map, tet.tetri, fil) == 0)
 				{
 					if (bottomright(tet.map, tet.tetri, fil) == 0)
-					{
-						ft_putstr_fd("wtf\n", 2);
-						ft_printf("0 0\n", 2);
-						exit (0);
-					}
+						failure();
 				}
 			}
 		}
-*/
 		else if (tet.map[fil->line - 1][fil->col - 1] == '.')
 		{
 			if (bottomright(tet.map, tet.tetri, fil) == 0)
-			{
-				ft_putstr_fd("hell yeah\n", 2);
-				ft_printf("0 0\n");
-				exit (0);
-			}
+				failure();
 		}
 		else if (topleft(tet.map, tet.tetri, fil) == 0)
-		{
-			ft_printf("0 0\n");
-			exit (0);
-		}
+			failure();
 	}
 	else
-	{
-		ft_putstr_fd("For OOOOOOOOOO\n", 2);
-		if (check_surroundx(tet.map, fil) == 1 && check_line(tet.map, fil, 1, fil->line - 1) == 1)
-		{
-			if (virusdown(tet.map, tet.tetri, fil) == 1)
-				return ;
-		}
-		if (check_line(tet.map, fil, 1, 0) == 1)
-		{
-			if (bottomright(tet.map, tet.tetri, fil) == 1)
-				return ;
-		}
-		if (check_line(tet.map, fil, 1, fil->line / 4) == 0)
-		{
-			if (gotomiddlefromo(tet.map, tet.tetri, fil) == 1)
-			return ;
-		}
-		if (tet.map[0][fil->col - 1] == '.' && tet.tetri_x >= tet.tetri_y)
-		{
-			if (topright(tet.map, tet.tetri, fil) == 0)
-			{
-				if (bottomright(tet.map, tet.tetri, fil) == 0)
-				{
-					ft_printf("0 0\n");
-					exit (0);
-				}
-			}
-		}
-		else if (tet.map[fil->line - 1][0] == '.')
-		{
-			if (bottomleft(tet.map, tet.tetri, fil) == 0)
-			{
-				ft_printf("0 0\n");
-				exit (0);
-			}
-		}
-		else if (middletotopright(tet.map, tet.tetri, fil) == 0)
-		{
-			if (bottomright(tet.map, tet.tetri, fil) == 0)
-			{
-				if (topleft(tet.map, tet.tetri, fil) == 0)
-				{
-					if (bottomleft(tet.map, tet.tetri, fil) == 0)
-					{
-						ft_printf("0 0\n");
-						exit (0);
-					}
-				}
-			}
-		}
-	}
+		strat_up(fil, tet);
 	freetab(tet.map);
 }
 
@@ -215,10 +142,8 @@ void		first_move(t_fil *fil, char **tab)
 {
 	char	**tetri;
 
-	ft_putstr_fd("Inside first_move\n", 2);
 	if (!(tetri = ft_readpiece()))
 		exit (EXIT_FAILURE);
 	puttetri(tab, tetri, fil);
-	ft_putstr_fd("\nsent the piece info!\n", 2);
 	freetab(tetri);
 }
