@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 04:48:28 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/05/08 04:48:29 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/08 09:40:41 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,42 +26,42 @@
 # define CYAN 0x0000FFFF
 # define MAGENTA 0x00FF00FF
 
-typedef struct      s_plat
+typedef struct		s_plat
 {
-    int             map_col;
-    int             map_line;
-}                   t_plat;
+	int				map_col;
+	int				map_line;
+}					t_plat;
 
-typedef struct      s_page
+typedef struct		s_page
 {
-    char            **line;
-    struct s_page   *next;
-    struct s_page   *prev;
-}                   t_page;
+	char			**line;
+	struct s_page	*next;
+	struct s_page	*prev;
+}					t_page;
 
-typedef struct  s_mw
+typedef struct		s_mw
 {
-    void        *mlx;
-    void        *win;
-    void        *img_ptr;
-    char        *data;
-    t_page      *page_ptr;
-    t_page      *end;
-    t_page      *start;
-    int         win_x;
-    int         win_y;
-    int         multi_ratio;
-    int         once;
-}               t_mw;
+	void			*mlx;
+	void			*win;
+	void			*img_ptr;
+	char			*data;
+	t_page			*page_ptr;
+	t_page			*end;
+	t_page			*start;
+	int				win_x;
+	int				win_y;
+	int				multi_ratio;
+	int				once;
+}					t_mw;
 
-void          print_elem_dot(int counter, int i, t_mw *mw);
-void          print_elem_o(int counter, int i, t_mw *mw);
-void          print_elem_x(int counter, int i, t_mw *mw);
-void          print_elem_capo(int counter, int i, t_mw *mw);
-void          print_elem_capx(int counter, int i, t_mw *mw);
-void          cont_page(t_page **begin, char *line, t_plat plat);
-void          init_page(t_page **begin, char *line, t_plat plat);
-void          print_filler(t_page *page_ptr, t_mw *mw);
-void          end_start(t_mw *mw);
+void				print_elem_dot(int counter, int i, t_mw *mw);
+void				print_elem_o(int counter, int i, t_mw *mw);
+void				print_elem_x(int counter, int i, t_mw *mw);
+void				print_elem_capo(int counter, int i, t_mw *mw);
+void				print_elem_capx(int counter, int i, t_mw *mw);
+void				cont_page(t_page **begin, char *line, t_plat plat);
+void				init_page(t_page **begin, char *line, t_plat plat);
+void				print_filler(t_page *page_ptr, t_mw *mw);
+void				end_start(t_mw *mw);
 
 #endif
