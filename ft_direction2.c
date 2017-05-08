@@ -52,7 +52,6 @@ int			fromoriginxdown(t_tetri tet, t_fil *fil)
 		l--;
 	}
 	return (0);
-
 }
 
 int			fromoriginydown(t_tetri tet, t_fil *fil)
@@ -67,7 +66,6 @@ int			fromoriginydown(t_tetri tet, t_fil *fil)
 		l--;
 	}
 	return (0);
-
 }
 
 int			bottomleft(t_tetri tet, t_fil *fil)

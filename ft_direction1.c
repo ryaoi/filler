@@ -77,7 +77,7 @@ int			middlebottomleft(t_tetri tet, t_fil *fil)
 	int		i;
 	int		l;
 
-	i = ((fil->line - 1) * 4) / 5; // 2 and 3
+	i = ((fil->line - 1) * 4) / 5;
 	while (i >= 0)
 	{
 		l = 0;

@@ -57,7 +57,7 @@ char		**cutmap(char **tab, t_fil *fil)
 		ret[i - skip] = ft_strsub(tab[i], 4, ft_strlen(tab[i]) - 4);
 		i++;
 	}
-	ret[i - skip]  = 0;
+	ret[i - skip] = 0;
 	get_cord(fil, ret);
 	return (ret);
 }
