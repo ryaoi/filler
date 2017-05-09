@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 04:36:10 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/05/08 10:16:59 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/09 08:58:39 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ static void			key_start_end(int keycode, t_mw *param)
 		print_filler(param->page_ptr, param);
 	}
 	if (keycode == 49)
-		ft_printf("O:%d\nX:%d\n", param->get_o, param->get_x);
+		ft_printf("result====\nO:%d\nX:%d\n", param->get_o, param->get_x);
 }
 
 int					my_key_funct(int keycode, t_mw *param)
 {
 	if (keycode == 53)
 	{
+		free_page(&(param->start));
 		mlx_destroy_window(param->mlx, param->win);
 		exit(0);
 	}
@@ -59,6 +60,7 @@ int					my_key_funct(int keycode, t_mw *param)
 static void			init_plat(t_plat *plat, t_mw *mw, char *line)
 {
 	char			**plat_info;
+	int				i;
 
 	plat_info = ft_strsplit(line, ' ');
 	plat->map_line = ft_atoi(plat_info[1]);
@@ -69,8 +71,15 @@ static void			init_plat(t_plat *plat, t_mw *mw, char *line)
 		mw->multi_ratio = 14;
 	else
 		mw->multi_ratio = 6;
-	mw->win_y = (plat->map_line + 10) * mw->multi_ratio;
+	mw->win_y = (plat->map_line) * mw->multi_ratio + 200;
 	mw->win_x = (plat->map_col + 2) * mw->multi_ratio;
+	i = 0;
+	while (plat_info[i] != 0)
+	{
+		free(plat_info[i]);
+		i++;
+	}
+	free(plat_info);
 }
 
 void				print_filler(t_page *page_ptr, t_mw *mw)

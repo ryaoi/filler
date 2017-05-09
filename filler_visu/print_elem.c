@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 07:16:56 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/05/08 09:56:30 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/09 08:19:02 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		print_elem_dot(int counter, int i, t_mw *mw)
 		{
 			mlx_pixel_put(mw->mlx, mw->win, (i * mw->multi_ratio) + k
 			+ mw->multi_ratio,
-			(counter * mw->multi_ratio) + j + (mw->multi_ratio * 3), WHITE);
+			(counter * mw->multi_ratio) + j + (150), WHITE);
 			k++;
 		}
 		j++;
@@ -45,7 +45,7 @@ void		print_elem_o(int counter, int i, t_mw *mw)
 		{
 			mlx_pixel_put(mw->mlx, mw->win, (i * mw->multi_ratio) + k
 			+ mw->multi_ratio,
-			(counter * mw->multi_ratio) + j + (mw->multi_ratio * 3), MAGENTA);
+			(counter * mw->multi_ratio) + j + (150), MAGENTA);
 			k++;
 		}
 		j++;
@@ -65,7 +65,7 @@ void		print_elem_x(int counter, int i, t_mw *mw)
 		{
 			mlx_pixel_put(mw->mlx, mw->win, (i * mw->multi_ratio) + k
 			+ mw->multi_ratio,
-			(counter * mw->multi_ratio) + j + (mw->multi_ratio * 3), CYAN);
+			(counter * mw->multi_ratio) + j + (150), CYAN);
 			k++;
 		}
 		j++;
@@ -85,7 +85,7 @@ void		print_elem_capo(int counter, int i, t_mw *mw)
 		{
 			mlx_pixel_put(mw->mlx, mw->win, (i * mw->multi_ratio) + k
 			+ mw->multi_ratio,
-			(counter * mw->multi_ratio) + j + (mw->multi_ratio * 3), RED);
+			(counter * mw->multi_ratio) + j + (150), RED);
 			k++;
 		}
 		j++;
@@ -105,7 +105,7 @@ void		print_elem_capx(int counter, int i, t_mw *mw)
 		{
 			mlx_pixel_put(mw->mlx, mw->win, (i * mw->multi_ratio) + k
 			+ mw->multi_ratio,
-			(counter * mw->multi_ratio) + j + (mw->multi_ratio * 3), BLUE);
+			(counter * mw->multi_ratio) + j + (150), BLUE);
 			k++;
 		}
 		j++;

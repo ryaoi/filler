@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 04:48:28 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/05/08 10:12:29 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/09 08:52:10 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ void				cont_page(t_page **begin, char *line, t_plat *plat);
 void				init_page(t_page **begin, char *line, t_plat plat);
 void				print_filler(t_page *page_ptr, t_mw *mw);
 void				end_start(t_mw *mw);
+void				free_page(t_page **begin);
 
 #endif

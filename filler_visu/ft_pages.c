@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 07:16:26 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/05/08 09:47:10 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/09 08:56:54 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void			init_page(t_page **begin, char *line, t_plat plat)
 		counter++;
 	}
 	add_page(begin, stock);
+	ft_strdel(&stock);
 }
 
 void			cont_page(t_page **begin, char *line, t_plat *plat)
@@ -86,13 +87,37 @@ void			cont_page(t_page **begin, char *line, t_plat *plat)
 		if (ft_strncmp(line, "==", 2) == 0)
 		{
 			plat->win_o = ft_atoi(line + 10);
+			ft_strdel(&line);
 			get_next_line(0, &line);
 			plat->win_x = ft_atoi(line + 10);
+			ft_strdel(&line);
 			ft_printf("O:%d\nX:%d\n", plat->win_o, plat->win_x);
 			return ;
 		}
 		init_page(begin, line, *plat);
 		ft_strdel(&line);
 		line = ft_strdup("dump");
+	}
+}
+
+void			free_page(t_page **begin)
+{
+	t_page		*ptr;
+	t_page		*save;
+	int			i;
+
+	ptr = *begin;
+	while (ptr != NULL)
+	{
+		save = ptr->next;
+		i = 0;
+		while (ptr->line[i] != 0)
+		{
+			free(ptr->line[i]);
+			i++;
+		}
+		free(ptr->line);
+		free(ptr);
+		ptr = save;
 	}
 }
