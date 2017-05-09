@@ -6,7 +6,7 @@
 #    By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/18 18:54:47 by ryaoi             #+#    #+#              #
-#    Updated: 2017/05/08 04:45:24 by ryaoi            ###   ########.fr        #
+#    Updated: 2017/05/09 09:41:04 by ryaoi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,10 @@ LIBFT		= $(DIR_LIBFT)/libft.a
 
 SRC			= main.c \
 			  print_elem.c \
-			  ft_pages.c
+			  ft_pages.c \
+			  ft_design.c \
+			  e_mlx.c \
+			  r_mlx.c
 
 OBJ			= $(SRC:.c=.o)
 

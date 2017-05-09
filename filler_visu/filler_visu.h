@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 04:48:28 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/05/09 08:52:10 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/09 09:45:44 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,11 @@ void				print_elem_capo(int counter, int i, t_mw *mw);
 void				print_elem_capx(int counter, int i, t_mw *mw);
 void				cont_page(t_page **begin, char *line, t_plat *plat);
 void				init_page(t_page **begin, char *line, t_plat plat);
-void				print_filler(t_page *page_ptr, t_mw *mw);
+void				print_filler(t_page *page_ptr, t_mw *mw, int counter);
 void				end_start(t_mw *mw);
 void				free_page(t_page **begin);
+void				header_filler(t_mw *mw);
+void				e_mlx(t_mw *mw, int i, int l);
+void				r_mlx(t_mw *mw);
 
 #endif
