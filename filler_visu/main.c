@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 04:36:10 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/05/09 09:45:33 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/09 15:37:27 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,11 @@ static void			key_start_end(int keycode, t_mw *param)
 	{
 		if (param->page_ptr->next != NULL)
 			param->page_ptr = param->end;
-		mlx_clear_window(param->mlx, param->win);
 		print_filler(param->page_ptr, param, 0);
 	}
 	if (keycode == 125)
 	{
 		param->page_ptr = param->start;
-		mlx_clear_window(param->mlx, param->win);
 		print_filler(param->page_ptr, param, 0);
 	}
 	if (keycode == 49)
@@ -43,14 +41,12 @@ int					my_key_funct(int keycode, t_mw *param)
 	{
 		if (param->page_ptr->prev != NULL)
 			param->page_ptr = param->page_ptr->prev;
-		mlx_clear_window(param->mlx, param->win);
 		print_filler(param->page_ptr, param, 0);
 	}
 	if (keycode == 124)
 	{
 		if (param->page_ptr->next != NULL)
 			param->page_ptr = param->page_ptr->next;
-		mlx_clear_window(param->mlx, param->win);
 		print_filler(param->page_ptr, param, 0);
 	}
 	key_start_end(keycode, param);
@@ -134,7 +130,7 @@ int					main(void)
 	mw.get_o = plat.win_o;
 	mw.get_x = plat.win_x;
 	print_filler(mw.page_ptr, &mw, 0);
-	mlx_key_hook(mw.win, my_key_funct, &mw);
+	mlx_hook(mw.win, 2, 0, my_key_funct, &mw);
 	mlx_loop(mw.mlx);
 	return (0);
 }

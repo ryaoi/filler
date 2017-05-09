@@ -12,10 +12,10 @@
 
 #include "filler.h"
 
-static void	get_cord(t_fil *fil, char **map)
+static void		get_cord(t_fil *fil, char **map)
 {
-	int		i;
-	int		l;
+	int			i;
+	int			l;
 
 	i = 0;
 	if (fil->start == 0)
@@ -34,11 +34,12 @@ static void	get_cord(t_fil *fil, char **map)
 	}
 }
 
-char		**cutmap(char **tab, t_fil *fil)
+char			**cutmap(char **tab, t_fil *fil)
 {
-	char	**ret;
-	int		i;
-	int		skip;
+	char		**ret;
+	int			i;
+	int			skip;
+	static int	cord = 0;
 
 	skip = 0;
 	i = 0;
@@ -58,6 +59,10 @@ char		**cutmap(char **tab, t_fil *fil)
 		i++;
 	}
 	ret[i - skip] = 0;
-	get_cord(fil, ret);
+	if (cord == 0)
+	{
+		get_cord(fil, ret);
+		cord = 1;
+	}
 	return (ret);
 }

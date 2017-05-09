@@ -27,7 +27,9 @@ SRC		= main.c \
 		  ft_readmap.c \
 		  ft_player.c \
 		  ft_strat_up.c \
-		  ft_direction2.c
+		  ft_strat_down.c \
+		  ft_direction2.c \
+		  ft_direction3.c
 
 OBJ		= $(SRC:.c=.o)
 

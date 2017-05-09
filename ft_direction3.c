@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_odirections.c                                   :+:      :+:    :+:   */
+/*   ft_direction3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/29 23:03:51 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/30 02:24:07 by ryaoi            ###   ########.fr       */
+/*   Created: 2017/05/09 14:53:14 by ryaoi             #+#    #+#             */
+/*   Updated: 2017/05/09 14:53:21 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int				gotomiddlefromo(t_tetri tet, t_fil *fil)
+int				gotomiddlefromx(t_tetri tet, t_fil *fil)
 {
 		int		i;
 		int		l;
 
-	i = (fil->line - 1) / 3;
+	i = (fil->line - 1) * 3 / 4;
 	while (i >= 0)
 	{
-		l = (fil->col - 1) / 3;
+		l = fil->col - 1;
 		while (l >= 0)
 		{
 			if (valid_put(tet, i, l, fil) == 1)
@@ -32,40 +32,24 @@ int				gotomiddlefromo(t_tetri tet, t_fil *fil)
 	return (0);
 }
 
-int			middletotopright(t_tetri tet, t_fil *fil)
+int				risingtopleft(t_tetri tet, t_fil *fil)
 {
-	int		i;
-	int		l;
+		int		i;
+		int		l;
+		int		check;
 
-	i = fil->col - 1;
-	while (i >= 0)
-	{
-		l = fil->line - 1;
-		while (l >= 0)
-		{
-			if (valid_put(tet, l, i, fil) == 1)
-				return (1);
-			l--;
-		}
-		i--;
-	}
-	return (0);
-}
-
-int			virusdown(t_tetri tet, t_fil *fil)
-{
-	int		i;
-	int		l;
-
-	i = fil->col - 1;
+	i = (fil->line - 1);
 	while (i >= 0)
 	{
 		l = 0;
-		while (l < fil->line - 1 && tet.map[l][i] == '.')
-			l++;
-		while (l < fil->line - 1)
+		check = 0;
+		while (l < fil->col - 1)
 		{
-			if (valid_put(tet, l, i, fil) == 1)
+			if (tet.map[i][l] == fil->c)
+				check = 1;
+			if (tet.map[i][l] != fil->c && check == 1)
+				l = fil->col - 2;
+			else if (valid_put(tet, i, l, fil) == 1)
 				return (1);
 			l++;
 		}
@@ -74,22 +58,24 @@ int			virusdown(t_tetri tet, t_fil *fil)
 	return (0);
 }
 
-int			virusup(t_tetri tet, t_fil *fil)
+int				curvingtopleft(t_tetri tet, t_fil *fil)
 {
-	int		i;
-	int		l;
+		int		i;
+		int		l;
+		int		check;
 
 	i = 0;
 	while (i < fil->col - 1)
 	{
 		l = 0;
-		while (l < fil->line - 1 && tet.map[l][i] == '.')
-			l++;
-		while (l < fil->line - 1 && tet.map[l][i] == fil->enemy_c)
-			l++;
+		check = 0;
 		while (l < fil->line - 1)
 		{
-			if (valid_put(tet, l, i, fil) == 1)
+			if (tet.map[l][i] == fil->c)
+				check = 1;
+			if (tet.map[l][i] != fil->c && check == 1)
+				l = fil->line - 2;
+			else if (valid_put(tet, l, i, fil) == 1)
 				return (1);
 			l++;
 		}
@@ -98,24 +84,24 @@ int			virusup(t_tetri tet, t_fil *fil)
 	return (0);
 }
 
-int			surroundx(t_tetri tet, t_fil *fil)
+int				bottomwall(t_tetri tet, t_fil *fil)
 {
-	int		i;
-	int		l;
+		int		i;
+		int		l;
+		int		check;
 
-	i = fil->line - 1;
-	while (i >= 0)
+	i = fil->line * 3 /4;
+	while (i < fil->line * 5 / 6)
 	{
 		l = 0;
-		while (tet.map[i][l] == '.' && l < fil->col - 1)
-			l++;
+		check = 0;
 		while (l < fil->col - 1)
 		{
 			if (valid_put(tet, i, l, fil) == 1)
 				return (1);
 			l++;
 		}
-		i--;
+		i++;
 	}
 	return (0);
 }

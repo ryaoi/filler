@@ -41,6 +41,7 @@ typedef	struct		s_fil
 
 
 void	ft_player(t_fil *fil);
+void    failure(void);
 char	**ft_readpiece(void);
 char	**ft_readmap(t_fil *fil);
 void	freetab(char **tab);
@@ -48,6 +49,7 @@ void    failure(void);
 char	**cutmap(char **tab, t_fil *fil);
 void	first_move(t_fil *fil, char **tab);
 void    strat_up(t_fil *fil, t_tetri tet);
+void    strat_down(t_fil *fil, t_tetri tet);
 int		valid_put(t_tetri tet, int i, int l, t_fil *fil);
 int		check_line(char **tab, t_fil *fil, int l, int line);
 int		check_side(char **tab, t_fil *fil, int l, int line);
@@ -62,10 +64,15 @@ int		fromoriginx(t_tetri tet, t_fil *fil);
 int		fromoriginxdown(t_tetri tet, t_fil *fil);
 int		fromoriginydown(t_tetri tet, t_fil *fil);
 int		gotomiddlefromo(t_tetri tet, t_fil *fil);
+int		gotomiddlefromx(t_tetri tet, t_fil *fil);
 int		middletotopright(t_tetri tet, t_fil *fil);
+int		risingtopleft(t_tetri tet, t_fil *fil);
+int		curvingtopleft(t_tetri tet, t_fil *fil);
+int		bottomwall(t_tetri tet, t_fil *fil);
 int		virusdown(t_tetri tet, t_fil *fil);
 int		virusup(t_tetri tet, t_fil *fil);
 int		surroundx(t_tetri tet, t_fil *fil);
 int		check_surroundx(char **map, t_fil *fil);
+int		check_surroundo(char **map, t_fil *fil);
 
 #endif
