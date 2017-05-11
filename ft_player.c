@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 19:18:05 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/01 03:27:10 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/11 19:45:05 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void		check_plateau(char *str, t_fil *fil)
 	}
 }
 
-void		ft_player(t_fil *fil)
+void			ft_player(t_fil *fil)
 {
 	char		*line;
 	int			ret;

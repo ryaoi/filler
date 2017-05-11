@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 20:32:12 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/01 03:49:09 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/11 19:45:26 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		main(void)
 	while (1)
 	{
 		if (!(tab = ft_readmap(&fil)))
-			exit (EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		first_move(&fil, tab);
 		freetab(tab);
 	}

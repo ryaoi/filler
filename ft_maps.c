@@ -6,18 +6,19 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 20:53:27 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/29 01:28:49 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/11 19:42:11 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static void		get_cord(t_fil *fil, char **map)
+static void		get_cord(t_fil *fil, char **map, int *cord)
 {
 	int			i;
 	int			l;
 
 	i = 0;
+	*cord = 1;
 	if (fil->start == 0)
 	{
 		while (map[i] != 0)
@@ -44,10 +45,7 @@ char			**cutmap(char **tab, t_fil *fil)
 	skip = 0;
 	i = 0;
 	if (!(ret = (char **)malloc(sizeof(char *) * (fil->line + 1))))
-	{
-		ft_printf("failed malloc when adjusting the map\n");
 		exit(EXIT_FAILURE);
-	}
 	while (ft_strncmp(tab[i], "00", 2) != 0)
 	{
 		i++;
@@ -60,9 +58,6 @@ char			**cutmap(char **tab, t_fil *fil)
 	}
 	ret[i - skip] = 0;
 	if (cord == 0)
-	{
-		get_cord(fil, ret);
-		cord = 1;
-	}
+		get_cord(fil, ret, &cord);
 	return (ret);
 }

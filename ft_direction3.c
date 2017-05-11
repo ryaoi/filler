@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 14:53:14 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/05/09 14:53:21 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/11 19:44:42 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int				gotomiddlefromx(t_tetri tet, t_fil *fil)
 {
-		int		i;
-		int		l;
+	int		i;
+	int		l;
 
 	i = (fil->line - 1) * 3 / 4;
 	while (i >= 0)
@@ -34,9 +34,9 @@ int				gotomiddlefromx(t_tetri tet, t_fil *fil)
 
 int				risingtopleft(t_tetri tet, t_fil *fil)
 {
-		int		i;
-		int		l;
-		int		check;
+	int		i;
+	int		l;
+	int		check;
 
 	i = (fil->line - 1);
 	while (i >= 0)
@@ -60,9 +60,9 @@ int				risingtopleft(t_tetri tet, t_fil *fil)
 
 int				curvingtopleft(t_tetri tet, t_fil *fil)
 {
-		int		i;
-		int		l;
-		int		check;
+	int		i;
+	int		l;
+	int		check;
 
 	i = 0;
 	while (i < fil->col - 1)
@@ -86,11 +86,11 @@ int				curvingtopleft(t_tetri tet, t_fil *fil)
 
 int				bottomwall(t_tetri tet, t_fil *fil)
 {
-		int		i;
-		int		l;
-		int		check;
+	int		i;
+	int		l;
+	int		check;
 
-	i = fil->line * 3 /4;
+	i = fil->line * 3 / 4;
 	while (i < fil->line * 5 / 6)
 	{
 		l = 0;

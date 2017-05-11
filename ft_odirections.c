@@ -6,16 +6,16 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 23:03:51 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/30 02:24:07 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/11 19:49:00 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int				gotomiddlefromo(t_tetri tet, t_fil *fil)
+int			gotomiddlefromo(t_tetri tet, t_fil *fil)
 {
-		int		i;
-		int		l;
+	int		i;
+	int		l;
 
 	i = (fil->line - 1) / 3;
 	while (i >= 0)

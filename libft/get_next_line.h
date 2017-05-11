@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 13:51:11 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/05/01 17:04:58 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/11 20:00:06 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 
 typedef struct		s_fd_buff
 {
-    int				fd;
-    unsigned int	pos;
-    ssize_t			n;
-    char			*buff;
+	int				fd;
+	unsigned int	pos;
+	ssize_t			n;
+	char			*buff;
 }					t_fd_buff;
 
 int					get_next_line(int const fd, char **line);

@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 19:30:30 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/05/01 17:14:05 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/11 19:46:08 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 char		**ft_readpiece(void)
 {
-	int		piece;
-	static	int	l;
-	char	**tetri;
-	char	*line;
-	int		i;
+	int			piece;
+	char		**tetri;
+	char		*line;
+	int			i;
 
 	get_next_line(0, &line);
 	piece = ft_atoi(line + 6);
@@ -42,9 +41,9 @@ char		**ft_readpiece(void)
 
 char		**ft_readmap(t_fil *fil)
 {
-	int		i;
-	char	**map;
-	char	*line;
+	int			i;
+	char		**map;
+	char		*line;
 	static int	max = 0;
 
 	line = NULL;
