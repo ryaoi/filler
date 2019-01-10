@@ -17,4 +17,4 @@ If the make fails its because u dont have mlx...
 
 then go back with `cd - `
 
-`./filler_vm -f maps/map00 -p1 ./ryaoi.filler -p2 ./players/hcao.filler > ./filler_visu/filler_visu`
+`./filler_vm -f maps/map00 -p1 ./ryaoi.filler -p2 ./players/hcao.filler | ./filler_visu/filler_visu`
